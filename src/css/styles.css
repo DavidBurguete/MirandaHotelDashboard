@@ -1,0 +1,40 @@
+html, * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.panel__link {
+  position: relative;
+  display: flex;
+  padding-left: 3.5rem;
+  padding-block: 1.5rem;
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 1.125rem;
+  text-decoration: none;
+  color: #799283;
+}
+.panel__link__icon {
+  font-size: 1.75rem;
+  margin-right: 1.625rem;
+}
+.panel__link__icon--room {
+  transform: rotate(-45deg);
+}
+.panel__link__icon--concierge {
+  transform: rotate(-90deg);
+}
+.panel__link.active {
+  font-weight: 600;
+  color: #E23428;
+}
+.panel__link.active div {
+  display: block;
+}
+
+header {
+  height: 7.5rem;
+}
+
+/*# sourceMappingURL=styles.css.map */
