@@ -7,3 +7,15 @@ html, * {
 body{
     display: flex;
 }
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 3.125rem;
+    background-color: #F8F8F8;
+}
+
+button{
+    cursor: pointer;
+}

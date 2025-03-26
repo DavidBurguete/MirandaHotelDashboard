@@ -89,15 +89,6 @@ export const UserMail = styled.p`
     color: #B2B2B2;
 `;
 
-export const UserButton = styled.button`
-    margin-top: 1rem;
-    padding: 0.875rem 2.5rem;
-    border: 0;
-    border-radius: 0.5rem;
-    background-color: #EBF1EF;
-    color: #135846;
-`;
-
 export const About = styled.div`
     margin-inline: 3.5rem 1rem;
     margin-block: 4rem;

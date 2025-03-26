@@ -1,10 +1,11 @@
-import { HashRouter } from 'react-router-dom'
-import LateralMenu from './components/LateralMenu'
-import Header from './components/Header'
+import { HashRouter, Route, Routes } from 'react-router-dom'
+import LateralMenu from './components/LateralMenu/LateralMenu';
+import Header from './components/Header/Header'
 import { useState } from 'react'
+import Rooms from './pages/Rooms';
 
 function App() {
-  const [ toggle, setToggle ] = useState(false);
+  const [ toggle, setToggle ] = useState(true);
 
   const Toggler = () => {
     setToggle(!toggle);
@@ -13,7 +14,12 @@ function App() {
   return (
     <HashRouter>
       <LateralMenu isToggled={toggle}/>
-      <Header Toggler={Toggler}/>
+      <div className="main">
+        <Header Toggler={Toggler}/>
+        <Routes>
+          <Route path="/rooms" element={<Rooms/>}/>
+        </Routes>
+      </div>
     </HashRouter>
   )
 }
