@@ -4,6 +4,10 @@ html, * {
   padding: 0;
 }
 
+body {
+  display: flex;
+}
+
 .panel__link {
   position: relative;
   display: flex;
@@ -34,7 +38,24 @@ html, * {
 }
 
 header {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
   height: 7.5rem;
+  width: 100%;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.0196078431);
+  background-color: white;
+}
+
+.top_menu__icon {
+  margin-block: auto;
+  margin-right: 3.5rem;
+}
+
+body .hide {
+  transform: scaleX(0);
+  transform-origin: left;
+  width: 0;
 }
 
 /*# sourceMappingURL=styles.css.map */

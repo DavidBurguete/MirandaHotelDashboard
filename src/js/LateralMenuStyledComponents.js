@@ -3,10 +3,15 @@ import styled from "styled-components";
 export const Lateral = styled.nav`
     display: flex;
     flex-direction: column;
+    position: relative;
+    right: 0;
     max-width: 21.5rem;
     width: 20%;
     min-height: 100vh;
     box-shadow: 13px 3px 40px #00000005;
+    background-color:  white;
+    transition: 200ms ease-in-out;
+    z-index: 2;
 `;
 
 export const LogoContainer = styled.div`
