@@ -3,7 +3,8 @@ import LateralMenu from './components/LateralMenu/LateralMenu';
 import Header from './components/Header/Header'
 import { useState } from 'react'
 import Rooms from './pages/Rooms';
-import NewRoom from './components/NewRoom/NewRoom';
+import NewRoom from './pages/NewRoom/NewRoom';
+import Bookings from './pages/Bookings';
 
 function App() {
   const [ toggle, setToggle ] = useState(true);
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/rooms" element={<Rooms/>}/>
           <Route path="/rooms/new" element={<NewRoom/>}/>
+          <Route path="/bookings" element={<Bookings/>}/>
         </Routes>
       </div>
     </HashRouter>

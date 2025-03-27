@@ -65,7 +65,9 @@ body .hide{
     align-self: flex-end;
 }
 
-.room{
+.room, .booking{
+    text-transform: capitalize;
+
     &>*{
         padding: 1.5rem;
     }
@@ -127,6 +129,26 @@ body .hide{
                 color: inherit;
             }
         }
+    }
+}
+
+.booking__main_data{
+    display: table-cell;
+    flex-direction: column;
+    margin: auto 0;
+
+    &__id{
+        font-family: Poppins;
+        font-weight: 400;
+        font-size: 0.875rem;
+        color: #799283;
+    }
+
+    &__room{
+        font-family: Poppins;
+        font-weight: 500;
+        font-size: 1rem;
+        color: #393939;
     }
 }
 
