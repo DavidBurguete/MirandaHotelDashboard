@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Table from "../components/Table/Table";
 import { Button } from "../js/GlobalStyledComponents";
+import { NavLink } from "react-router-dom";
 
 const Rooms = () => {
     const [ rooms, setRooms ] = useState(null);
@@ -28,18 +29,18 @@ const Rooms = () => {
     }
     const roomsOrdered = rooms.map(room => {
         var floor = "";
-        switch(parseInt((room.room_id - 1) / 25)){
-            case 0:
-                floor += "Ground";
-                break;
+        switch(parseInt((room.room_id - 1) / 25) + 1){
             case 1:
-                floor += "First";
+                floor += "1st";
                 break;
             case 2:
-                floor += "Second";
+                floor += "2nd";
                 break;
             case 3:
-                floor += "Third";
+                floor += "3rd";
+                break;
+            default:
+                floor += (parseInt((room.room_id - 1) / 25) + 1) + "th";
                 break;
         }
         return <>
@@ -48,7 +49,7 @@ const Rooms = () => {
                     <img src={room.photos.split("__")[0]} alt="hotel room image" className="room__main_data__img"/>
                     <div className="room__main_data__text">
                         <p className="room__main_data__text__id">#{room.room_id}</p>
-                        <p className="room__main_data__text__room">{floor}, Room {(room.room_id - 1) % 25 + 1}</p>
+                        <p className="room__main_data__text__room">{floor} Floor, Room {(room.room_id - 1) % 25 + 1}</p>
                     </div>
                 </td>
                 <td className="room__extra">{room.room_type}</td>
@@ -67,7 +68,9 @@ const Rooms = () => {
         </>;
     });
     return <main>
-        <Button $background="#135846" $color="white">+ New Room</Button>
+        <NavLink to="/rooms/new" className="right-button">
+            <Button $background="#135846" $color="white">+ New Room</Button>
+        </NavLink>
         <Table headers={headers}>{roomsOrdered}</Table>
     </main>;
 }

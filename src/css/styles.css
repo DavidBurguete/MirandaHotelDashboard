@@ -11,12 +11,12 @@ body {
 main {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  min-height: 100%;
   padding: 3.125rem;
   background-color: #F8F8F8;
 }
 
-button {
+button, input[type=submit] {
   cursor: pointer;
 }
 
@@ -53,7 +53,7 @@ header {
   display: flex;
   justify-content: space-between;
   position: relative;
-  height: 7.5rem;
+  min-height: 7.5rem;
   width: 100%;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.0196078431);
   background-color: white;
@@ -74,6 +74,10 @@ body .hide {
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+.right-button {
+  align-self: flex-end;
 }
 
 .room > * {
@@ -124,6 +128,15 @@ body .hide {
 .room__price--previous {
   color: #E23428;
   text-decoration: line-through;
+}
+.room__price--previous span {
+  color: inherit;
+}
+
+input[type=checkbox] {
+  justify-self: flex-start;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 /*# sourceMappingURL=styles.css.map */

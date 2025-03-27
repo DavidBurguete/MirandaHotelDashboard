@@ -3,6 +3,7 @@ import LateralMenu from './components/LateralMenu/LateralMenu';
 import Header from './components/Header/Header'
 import { useState } from 'react'
 import Rooms from './pages/Rooms';
+import NewRoom from './components/NewRoom/NewRoom';
 
 function App() {
   const [ toggle, setToggle ] = useState(true);
@@ -18,6 +19,7 @@ function App() {
         <Header Toggler={Toggler}/>
         <Routes>
           <Route path="/rooms" element={<Rooms/>}/>
+          <Route path="/rooms/new" element={<NewRoom/>}/>
         </Routes>
       </div>
     </HashRouter>
