@@ -20,6 +20,12 @@ button, input[type=submit], .as_button {
   cursor: pointer;
 }
 
+input[type=checkbox] {
+  justify-self: flex-start;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
 .panel__link {
   position: relative;
   display: flex;
@@ -154,10 +160,9 @@ body .hide {
   color: #393939;
 }
 
-input[type=checkbox] {
-  justify-self: flex-start;
-  width: 1.25rem;
-  height: 1.25rem;
+.selected_filter {
+  border-bottom: 3px solid rgba(19, 88, 70, 0.6901960784) !important;
+  color: #135846 !important;
 }
 
 /*# sourceMappingURL=styles.css.map */
