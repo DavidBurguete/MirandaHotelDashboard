@@ -1,21 +1,7 @@
 import { useEffect, useState } from "react";
 import Table from "../components/Table/Table";
-import { Button } from "../js/GlobalStyledComponents";
-import styled from "styled-components";
-
-const Filters = styled.div`
-    display: flex;
-    margin: 1rem;
-`;
-
-const Filter = styled.p`
-    padding: 1rem 1.5rem;
-    border-bottom: 2px solid #6E6E6E70;
-    font-family: Poppins;
-    font-weight: 500;
-    font-size: 1rem;
-    color: #6E6E6E;
-`;
+import { Button, Filters, Filter } from "../js/GlobalStyledComponents";
+import Loading from "../components/Loading";
 
 function Bookings(){
     const [ rooms, setRooms ] = useState(null);
@@ -114,7 +100,7 @@ function Bookings(){
     }, []);
     
     if(bookings === null){
-        return <p>loading...</p>
+        return <Loading/>;
     }
     const bookingsOrdered = filteredBookings.map(booking => {
         var status = null;

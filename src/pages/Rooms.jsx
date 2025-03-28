@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Table from "../components/Table/Table";
 import { Button } from "../js/GlobalStyledComponents";
 import { NavLink } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const Rooms = () => {
     const [ rooms, setRooms ] = useState(null);
@@ -25,7 +26,7 @@ const Rooms = () => {
     }, []);
 
     if(rooms === null){
-        return <p>loading...</p>
+        return <Loading/>;
     }
     const roomsOrdered = rooms.map(room => {
         var floor = "";
