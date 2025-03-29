@@ -30,6 +30,7 @@ export const InputSubmit = styled.input.attrs({
     type: "submit",
     value: "Create Room"
 })`
+    align-self: flex-end;
     margin: 1rem;
     padding: 1rem;
     width: 15rem;

@@ -70,7 +70,7 @@ function NewRoom(){
             await fetch("/json/Rooms.json", { mode: "cors" })
                 .then((response) => response.json())
                 .then(async (response) => {
-                    var amenities = selectedAmenities.map(amenitie => {
+                    let amenities = selectedAmenities.map(amenitie => {
                         return amenitie.value + ",";
                     }).join("");
                     amenities = amenities.substring(0, amenities.length - 1);
@@ -172,7 +172,7 @@ function NewRoom(){
                     }}
                 />
             </StyledComponents.Label>
-            <StyledComponents.InputSubmit className="right-button"/>
+            <StyledComponents.InputSubmit/>
         </StyledComponents.Form>
     </main>;
 }

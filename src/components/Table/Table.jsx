@@ -2,7 +2,7 @@ import * as StyledComponents from "./TableStyledComponents";
 import { IoIosArrowDown } from "react-icons/io";
 
 function Table({headers, children}){
-    var finalHeaders = null;
+    let finalHeaders = null;
     if(headers[0].action === undefined){
         finalHeaders = headers.map(header => {
             return <StyledComponents.TH key={header}>{header}</StyledComponents.TH>;
@@ -10,7 +10,7 @@ function Table({headers, children}){
     }
     else{
         finalHeaders = headers.map(header => {
-            return <StyledComponents.TH key={header.head} onClick={header.action} className={header.action !== null ? "as_button" : ""}>{header.head}{header.action !== null ? <IoIosArrowDown style={{marginLeft: "0.5rem"}}/> : ""}</StyledComponents.TH>;
+            return <StyledComponents.THSort key={header.head} onClick={header.action} $as_button={header.action !== null}>{header.head}{header.action !== null ? <IoIosArrowDown style={{marginLeft: "0.5rem"}}/> : ""}</StyledComponents.THSort>;
         });
     }
     return <StyledComponents.TableTag id="list">

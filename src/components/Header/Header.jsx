@@ -1,7 +1,4 @@
 import { HiMenuAlt2 } from "react-icons/hi";
-import { LuMail } from "react-icons/lu";
-import { FaRegBell } from "react-icons/fa6";
-import { IoLogOutOutline } from "react-icons/io5";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as StyledComponents from "./HeaderStyledComponents";
@@ -30,7 +27,7 @@ function Header({Toggler}){
         }
     }, [location]);
 
-    return <header>
+    return <StyledComponents.Header>
         <StyledComponents.Title>
             <StyledComponents.ToggleLateralMenu onClick={Toggler}>
                 <HiMenuAlt2/>
@@ -38,12 +35,12 @@ function Header({Toggler}){
             <StyledComponents.H2>{innerText}</StyledComponents.H2>
         </StyledComponents.Title>
         <StyledComponents.TopMenu>
-            <LuMail className="top_menu__icon"/>
-            <FaRegBell className="top_menu__icon"/>
-            <StyledComponents.Separator className="top_menu__icon"/>
-            <IoLogOutOutline className="top_menu__icon"/>
+            <StyledComponents.Mail/>
+            <StyledComponents.Bell/>
+            <StyledComponents.Separator/>
+            <StyledComponents.LogOut/>
         </StyledComponents.TopMenu>
-    </header>;
+    </StyledComponents.Header>;
 }
 
 export default Header;

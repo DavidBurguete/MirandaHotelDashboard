@@ -17,9 +17,21 @@ export const Filters = styled.div`
 
 export const Filter = styled.p`
     padding: 1rem 1.5rem;
-    border-bottom: 2px solid #6E6E6E70;
+    border-bottom: ${({$filter}) => $filter ? "3px solid #135846B0" : "2px solid #6E6E6E70"};
     font-family: Poppins;
     font-weight: 500;
     font-size: 1rem;
-    color: #6E6E6E;
+    color: ${({$filter}) => $filter ? "#135846" : "#6E6E6E"};
+    cursor: pointer;
+`;
+
+export const TableActionsWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
+export const PageWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 `;

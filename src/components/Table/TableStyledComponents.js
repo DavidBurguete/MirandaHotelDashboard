@@ -16,4 +16,9 @@ export const TBody = styled.tbody``;
 export const TR = styled.tr``;
 export const TH = styled.th`
     padding: 1.5rem;
+    cursor: default;
+`;
+
+export const THSort = styled(TH)`
+    cursor: ${({$as_button}) => $as_button ? "pointer" : "default"};
 `;

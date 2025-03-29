@@ -1,4 +1,10 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
+import { LuLayoutDashboard } from "react-icons/lu";
+import { SlKey } from "react-icons/sl";
+import { LuCalendarCheck2 } from "react-icons/lu";
+import { RiUser6Line } from "react-icons/ri";
+import { IoExtensionPuzzleOutline } from "react-icons/io5";
 
 export const Lateral = styled.nav`
     display: flex;
@@ -6,11 +12,13 @@ export const Lateral = styled.nav`
     position: relative;
     right: 0;
     max-width: 21.5rem;
-    width: 20%;
+    width: ${({$toggled}) => $toggled ? "20%" : "0"};
     min-height: 100vh;
     box-shadow: 13px 3px 40px #00000005;
     background-color:  white;
     transition: 200ms ease-in-out;
+    transform: ${({$toggled}) => $toggled ? "scaleX(1.0)" : "scaleX(0)"};
+    transform-origin: left;
     z-index: 2;
 `;
 
@@ -43,6 +51,27 @@ export const H1 = styled.h1`
     color: #5D5449;
 `;
 
+export const StyledNavLink = styled(NavLink)`
+    position: relative;
+    display: flex;
+    padding-left: 3.5rem;
+    padding-block: 1.5rem;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 1.125rem;
+    text-decoration: none;
+    color: #799283;
+
+    &.active{
+        font-weight: 600;
+        color: #E23428;
+
+        div{
+            display: block;
+        }
+    }
+`;
+
 export const SelectedNavLink = styled.div`
     display: none;
     position: absolute;
@@ -52,6 +81,34 @@ export const SelectedNavLink = styled.div`
     left: -0.5rem;
     border-radius: 0.375rem;
     background-color: #E23428;
+`;
+
+
+export const Dashboard = styled(LuLayoutDashboard)`
+    font-size: 1.75rem;
+    margin-right: 1.625rem;
+`;
+
+export const Key = styled(SlKey)`
+    font-size: 1.75rem;
+    margin-right: 1.625rem;
+    transform: rotate(-45deg);
+`;
+
+export const Calendar = styled(LuCalendarCheck2)`
+    font-size: 1.75rem;
+    margin-right: 1.625rem;
+`;
+
+export const User = styled(RiUser6Line)`
+    font-size: 1.75rem;
+    margin-right: 1.625rem;
+`;
+
+export const Concierge = styled(IoExtensionPuzzleOutline)`
+    font-size: 1.75rem;
+    margin-right: 1.625rem;
+    transform: rotate(-90deg);
 `;
 
 export const UserCard = styled.div`
