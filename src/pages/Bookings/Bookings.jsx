@@ -3,12 +3,14 @@ import Table from "../../components/Table/Table";
 import * as StyledComponents from "./BookingsStyledComponents";
 import { Button, Filters, Filter } from "../../js/GlobalStyledComponents";
 import Loading from "../../components/Loading";
+import { useNavigate } from "react-router-dom";
 
 function Bookings(){
     const [ rooms, setRooms ] = useState(null);
     const [ bookings, setBookings ] = useState(null);
     const [ filteredBookings, setFilteredBookings ] = useState(null);
     const [ headers, setHeaders ] = useState(null);
+    const navigate = useNavigate();
 
     const [ isAll, setIsAll ] = useState(true);
     const [ isIn, setIsIn ] = useState(false);
@@ -110,6 +112,10 @@ function Bookings(){
             })
             .catch((error) => console.error(error));
     }, []);
+
+    const navigateToBookingCard = (book_id) => {
+        navigate(`/bookings/${book_id}`);
+    }
     
     let bookingsOrdered = [];
     if(bookings !== null){
@@ -135,9 +141,9 @@ function Bookings(){
                     }
                     break;
             }
-            return <StyledComponents.TR>
+            return <StyledComponents.TR key={booking.booking_id} onClick={() => navigateToBookingCard(booking.booking_id)}>
                 <StyledComponents.TDMoreContent>
-                    <p>User #{booking.client_id}</p>
+                    <p>{booking.client_name}</p>
                     <StyledComponents.ID>ID #{booking.booking_id}</StyledComponents.ID>
                 </StyledComponents.TDMoreContent>
                 <StyledComponents.TD>{booking.order_date}</StyledComponents.TD>

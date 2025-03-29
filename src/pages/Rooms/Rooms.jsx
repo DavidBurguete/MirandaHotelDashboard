@@ -70,7 +70,7 @@ const Rooms = () => {
                     floor += (parseInt((room.room_id - 1) / 25) + 1) + "th";
                     break;
             }
-            return <StyledComponents.TR>
+            return <StyledComponents.TR key={room.room_id}>
                     <StyledComponents.TDMoreContent>
                         <StyledComponents.TableImg src={room.photos.split("__")[0]} alt="hotel room image"/>
                         <StyledComponents.DivText>

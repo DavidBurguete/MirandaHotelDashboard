@@ -49,8 +49,9 @@ function NewRoom(){
     const amenititesOptions = [
         { value: 'TV', label: 'TV' },
         { value: 'Fridge', label: 'Fridge' },
-        { value: 'Bath', label: 'Bath' },
-        { value: 'Sea View', label: 'Sea View' }
+        { value: 'Bathtub', label: 'Bathtub' },
+        { value: 'Sea View', label: 'Sea View' },
+        { value: 'Air Conditioner',  label: 'Air Conditioner'}
     ];
 
     const roomTypeOptions = [

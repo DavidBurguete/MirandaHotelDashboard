@@ -1,10 +1,11 @@
-import { HashRouter, Route, Routes } from 'react-router-dom'
+import { useState } from 'react';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import LateralMenu from './components/LateralMenu/LateralMenu';
 import Header from './components/Header/Header'
-import { useState } from 'react'
 import Rooms from './pages/Rooms/Rooms';
 import NewRoom from './pages/NewRoom/NewRoom';
 import Bookings from './pages/Bookings/Bookings';
+import BookingCard from './pages/BookingCard/BookingCard';
 import { PageWrapper } from './js/GlobalStyledComponents';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/rooms" element={<Rooms/>}/>
           <Route path="/rooms/new" element={<NewRoom/>}/>
           <Route path="/bookings" element={<Bookings/>}/>
+          <Route path="/bookings/:id" element={<BookingCard/>}/>
         </Routes>
       </PageWrapper>
     </HashRouter>
