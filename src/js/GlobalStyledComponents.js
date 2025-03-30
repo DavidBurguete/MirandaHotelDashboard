@@ -35,5 +35,6 @@ export const PageWrapper = styled.div`
     flex-direction: column;
     min-width: ${props => props.$toggleForWidth ? "calc(100% - 21.5rem)" : "100%"};
     width: 100%;
+    height: fit-content;
     transition: 200ms ease-in-out;
 `;

@@ -20,7 +20,6 @@ export const Title = styled.div`
     position: relative;
     padding-left: 2.5rem;
     width: fit-content;
-    height: 100%;
 `;
 
 export const ToggleLateralMenu = styled.button`

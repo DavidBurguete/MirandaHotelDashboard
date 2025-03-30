@@ -8,6 +8,7 @@ import Bookings from './pages/Bookings/Bookings';
 import BookingCard from './pages/BookingCard/BookingCard';
 import { PageWrapper } from './js/GlobalStyledComponents';
 import Contact from './pages/Contact/Contact';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 function App() {
   const [ toggle, setToggle ] = useState(true);
@@ -22,6 +23,7 @@ function App() {
       <PageWrapper $toggleForWidth={toggle}>
         <Header Toggler={Toggler}/>
         <Routes>
+          <Route path="/" element={<Dashboard/>}/>
           <Route path="/rooms" element={<Rooms/>}/>
           <Route path="/rooms/new" element={<NewRoom/>}/>
           <Route path="/bookings" element={<Bookings/>}/>
