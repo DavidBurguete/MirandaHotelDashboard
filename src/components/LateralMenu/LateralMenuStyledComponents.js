@@ -100,12 +100,12 @@ export const Calendar = styled(LuCalendarCheck2)`
     margin-right: 1.625rem;
 `;
 
-export const User = styled(RiUser6Line)`
+export const Contact = styled(RiUser6Line)`
     font-size: 1.75rem;
     margin-right: 1.625rem;
 `;
 
-export const Concierge = styled(IoExtensionPuzzleOutline)`
+export const Users = styled(IoExtensionPuzzleOutline)`
     font-size: 1.75rem;
     margin-right: 1.625rem;
     transform: rotate(-90deg);

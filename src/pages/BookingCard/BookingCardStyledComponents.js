@@ -91,6 +91,7 @@ export const SwiperImg = styled.img`
 `;
 
 export const NavigationButton = styled.div`
+    visibility: ${(props) => props.$notActive ? "hidden" : "visible"};
     width: 2.5rem;
     height: 2.5rem;
     background-color: rgba(104, 104, 104, 0.4);
@@ -106,8 +107,6 @@ export const NavigationButton = styled.div`
 `;
 
 export const ImageCardBottom = styled.div`
-    position: absolute;
-    bottom: 0;
     padding: 1.25rem;
 `;
 

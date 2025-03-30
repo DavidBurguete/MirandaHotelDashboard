@@ -33,5 +33,7 @@ export const TableActionsWrapper = styled.div`
 export const PageWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    min-width: ${props => props.$toggleForWidth ? "calc(100% - 21.5rem)" : "100%"};
     width: 100%;
+    transition: 200ms ease-in-out;
 `;

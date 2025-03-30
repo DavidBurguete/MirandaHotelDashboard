@@ -23,13 +23,13 @@ function LateralMenu({isToggled}){
             <StyledComponents.SelectedNavLink/>
             <StyledComponents.Calendar/>Bookings
         </StyledComponents.StyledNavLink>
-        <StyledComponents.StyledNavLink to="/guests">
+        <StyledComponents.StyledNavLink to="/contact">
             <StyledComponents.SelectedNavLink/>
-            <StyledComponents.User/>Guest
+            <StyledComponents.Contact/>Contact
         </StyledComponents.StyledNavLink>
-        <StyledComponents.StyledNavLink to="/concierge">
+        <StyledComponents.StyledNavLink to="/users">
             <StyledComponents.SelectedNavLink/>
-            <StyledComponents.Concierge/>Concierge
+            <StyledComponents.Users/>Users
         </StyledComponents.StyledNavLink>
         <StyledComponents.UserCard>
             <StyledComponents.OffSet>

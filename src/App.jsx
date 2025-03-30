@@ -7,6 +7,7 @@ import NewRoom from './pages/NewRoom/NewRoom';
 import Bookings from './pages/Bookings/Bookings';
 import BookingCard from './pages/BookingCard/BookingCard';
 import { PageWrapper } from './js/GlobalStyledComponents';
+import Contact from './pages/Contact/Contact';
 
 function App() {
   const [ toggle, setToggle ] = useState(true);
@@ -18,13 +19,14 @@ function App() {
   return (
     <HashRouter>
       <LateralMenu isToggled={toggle}/>
-      <PageWrapper>
+      <PageWrapper $toggleForWidth={toggle}>
         <Header Toggler={Toggler}/>
         <Routes>
           <Route path="/rooms" element={<Rooms/>}/>
           <Route path="/rooms/new" element={<NewRoom/>}/>
           <Route path="/bookings" element={<Bookings/>}/>
           <Route path="/bookings/:id" element={<BookingCard/>}/>
+          <Route path="/contact" element={<Contact/>}/>
         </Routes>
       </PageWrapper>
     </HashRouter>
