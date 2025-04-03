@@ -4,42 +4,56 @@ import * as StyledComponents from "./BookingsStyledComponents";
 import { Button, Filters, Filter } from "../../js/GlobalStyledComponents";
 import Loading from "../../components/Loading";
 import { useNavigate } from "react-router-dom";
+import { addHeaders, fetchBookings, filterBookings, sortBookings } from "./BookingsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchRooms } from "../Rooms/RoomsSlice";
 
 function Bookings(){
-    const [ rooms, setRooms ] = useState(null);
-    const [ bookings, setBookings ] = useState(null);
-    const [ filteredBookings, setFilteredBookings ] = useState(null);
-    const [ headers, setHeaders ] = useState(null);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { rooms } = useSelector(state => state.rooms);
+    const bookings = useSelector(state => state.bookings);
 
     const [ isAll, setIsAll ] = useState(true);
     const [ isIn, setIsIn ] = useState(false);
     const [ isOut, setIsOut ] = useState(false);
     const [ isProgress, setIsProgres ] = useState(false);
-
-    const sortByOrderDate = async () => {
-        let sortedBookings = await fetch("/json/Bookings.json", { mode: "cors" })
-            .then((response) => {return response.json()})
-            .catch(() => {null});
-        sortedBookings = [...sortedBookings].sort((a, b) => new Date(a.order_date) - new Date(b.order_date));
-        setFilteredBookings(sortedBookings);
-    }
-
-    const sortByCheckInDate = async () => {
-        let sortedBookings = await fetch("/json/Bookings.json", { mode: "cors" })
-            .then((response) => {return response.json()})
-            .catch(() => {null});
-        sortedBookings = [...sortedBookings].sort((a, b) => new Date(a.check_in_date) - new Date(b.check_in_date));
-        setFilteredBookings(sortedBookings);
-    }
-
-    const sortByCheckOutDate = async () => {
-        let sortedBookings = await fetch("/json/Bookings.json", { mode: "cors" })
-            .then((response) => {return response.json()})
-            .catch(() => {null});
-        sortedBookings = [...sortedBookings].sort((a, b) => new Date(a.check_out_date) - new Date(b.check_out_date));
-        setFilteredBookings(sortedBookings);
-    }
+    
+    useEffect(() => {
+        dispatch(fetchRooms());
+        dispatch(fetchBookings());
+        const headersOrdered = [
+            {
+                head: "Guest",
+                action: null
+            },
+            {
+                head: "Order Date",
+                action: "OrderDate"
+            },
+            {
+                head: "Check In",
+                action: "CheckInDate"
+            },
+            {
+                head: "Check Out",
+                action: "CheckOutDate"
+            },
+            {
+                head: "Special Request",
+                action: null
+            },
+            {
+                head: "Room Type",
+                action: null
+            },
+            {
+                head: "Status",
+                action: null
+            }
+        ]
+        dispatch(addHeaders(headersOrdered));
+    }, []);
 
     const setFilter = (event) => {
         setIsAll(false);
@@ -48,78 +62,31 @@ function Bookings(){
         setIsProgres(false);
         switch(event.target.innerHTML){
             case "All Bookings":
-                setFilteredBookings(bookings);
+                dispatch(filterBookings("All Bookings"));
                 setIsAll(true);
                 break;
             case "Checking In":
-                setFilteredBookings(bookings.filter(booking => booking.status === "Check In"));
+                dispatch(filterBookings("Check In"));
                 setIsIn(true);
                 break;
             case "Checking Out":
-                setFilteredBookings(bookings.filter(booking => booking.status === "Check Out"));
+                dispatch(filterBookings("Check Out"));
                 setIsOut(true);
                 break;
             case "In Progress":
-                setFilteredBookings(bookings.filter(booking => booking.status === "In Progress"));
+                dispatch(filterBookings("In Progress"));
                 setIsProgres(true);
                 break;
         }
     }
 
-    useEffect(() => {
-        fetch("/json/Rooms.json", { mode: "cors" })
-            .then((response) => response.json())
-            .then((response) => {
-                setRooms(response);
-            })
-            .catch((error) => console.error(error));
-        fetch("/json/Bookings.json", { mode: "cors" })
-            .then((response) => response.json())
-            .then((response) => {
-                setBookings(response);
-                setFilteredBookings(response);
-                const headersOrdered = [
-                    {
-                        head: "Guest",
-                        action: null
-                    },
-                    {
-                        head: "Order Date",
-                        action: sortByOrderDate
-                    },
-                    {
-                        head: "Check In",
-                        action: sortByCheckInDate
-                    },
-                    {
-                        head: "Check Out",
-                        action: sortByCheckOutDate
-                    },
-                    {
-                        head: "Special Request",
-                        action: null
-                    },
-                    {
-                        head: "booking Type",
-                        action: null
-                    },
-                    {
-                        head: "Status",
-                        action: null
-                    }
-                ]
-                setHeaders(headersOrdered);
-            })
-            .catch((error) => console.error(error));
-    }, []);
-
-    const navigateToBookingCard = (book_id) => {
-        navigate(`/bookings/${book_id}`);
+    const navigateToBookingCard = (booking_id) => {
+        navigate(`/bookings/${booking_id}`);
     }
     
     let bookingsOrdered = [];
     if(bookings !== null){
-        bookingsOrdered = filteredBookings.map(booking => {
+        bookingsOrdered = bookings.filteredBookings.map(booking => {
             let status = null;
             switch(booking.status){
                 case "Check In":
@@ -158,7 +125,7 @@ function Bookings(){
         });
     }
 
-    return bookings === null ?
+    return bookings.loading ?
         <Loading/> :
         <main>
             <Filters>
@@ -167,7 +134,7 @@ function Bookings(){
                 <Filter onClick={setFilter} $filter={isOut}>Checking Out</Filter>
                 <Filter onClick={setFilter} $filter={isProgress}>In Progress</Filter>
             </Filters>
-            <Table headers={headers}>{bookingsOrdered}</Table>
+            <Table headers={bookings.tableHeaders} action={sortBookings}>{bookingsOrdered}</Table>
         </main>
     ;
 }

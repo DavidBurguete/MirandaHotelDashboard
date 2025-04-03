@@ -63,8 +63,6 @@ export const deleteRoom = createAsyncThunk("rooms/deleteRoom", async (room_id, t
     const state = thunkAPI.getState();
     const { rooms } = state.rooms;
     const deletedRoom = rooms.filter(room => room.room_id !== room_id);
-    console.log(room_id);
-    console.log(deletedRoom);
     return deletedRoom;
 });
 

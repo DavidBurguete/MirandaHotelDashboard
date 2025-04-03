@@ -1,16 +1,25 @@
+import { useDispatch } from "react-redux";
 import * as StyledComponents from "./TableStyledComponents";
 import { IoIosArrowDown } from "react-icons/io";
 
-function Table({headers, children}){
+function Table({headers, action, children}){
+    const dispatch = useDispatch();
+
+    const handleAction = (actionName, action) => {
+        if(actionName !== null){
+            dispatch(action(actionName));
+        }
+    }
+
     let finalHeaders = null;
-    if(headers[0].action === undefined){
+    if(action === undefined){
         finalHeaders = headers.map(header => {
             return <StyledComponents.TH key={header}>{header}</StyledComponents.TH>;
         });
     }
     else{
         finalHeaders = headers.map(header => {
-            return <StyledComponents.THSort key={header.head} onClick={header.action} $as_button={header.action !== null}>{header.head}{header.action !== null ? <IoIosArrowDown style={{marginLeft: "0.5rem"}}/> : ""}</StyledComponents.THSort>;
+            return <StyledComponents.THSort key={header.head} onClick={() => handleAction(header.action, action)} $as_button={header.action !== null}>{header.head}{header.action !== null ? <IoIosArrowDown style={{marginLeft: "0.5rem"}}/> : ""}</StyledComponents.THSort>;
         });
     }
     return <StyledComponents.TableTag id="list">
