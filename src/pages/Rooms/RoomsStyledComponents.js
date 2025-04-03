@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { RxCrossCircled } from "react-icons/rx";
 
 export const TR = styled.tr`
     text-transform: capitalize;
@@ -71,4 +72,12 @@ export const PreviousPriceP = styled(Price).attrs({
     span{
         color: inherit;
     }
+`;
+
+export const CrossCircled = styled(RxCrossCircled)`
+    margin-left: 2rem;
+    font-size: 1.5rem;
+    color: red;
+    vertical-align: middle;
+    cursor: pointer;
 `;

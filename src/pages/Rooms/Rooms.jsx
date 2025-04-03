@@ -1,35 +1,23 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Table from "../../components/Table/Table";
 import * as StyledComponents from "./RoomsStyledComponents";
 import { Button, Filter, Filters, TableActionsWrapper } from "../../js/GlobalStyledComponents";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
+import { deleteRoom, fetchRooms, filterRooms } from "./RoomsSlice";
 
 const Rooms = () => {
-    const [ rooms, setRooms ] = useState(null);
-    const [ filteredRooms, setFilteredRooms ] = useState(null);
-    const [ headers, setHeaders ] = useState(null);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const rooms = useSelector(state => state.rooms);
 
     const [ isAll, setIsAll ] = useState(true);
     const [ isAvailable, setIsAvailable ] = useState(false);
     const [ isBooked, setIsBooked ] = useState(false);
 
     useEffect(() => {
-        fetch("/json/Rooms.json", { mode: "cors" })
-            .then((response) => response.json())
-            .then((response) => {
-                setRooms(response);
-                setFilteredRooms(response);
-                const headersOrdered = [
-                    "Room Name",
-                    "Room Type",
-                    "Amenities",
-                    "Price",
-                    "Status"
-                ]
-                setHeaders(headersOrdered);
-            })
-            .catch((error) => console.error(error));
+        dispatch(fetchRooms());
     }, []);
 
     const setFilter = (event) => {
@@ -38,23 +26,32 @@ const Rooms = () => {
         setIsBooked(false);
         switch(event.target.innerHTML){
             case "All Rooms":
-                setFilteredRooms(rooms);
+                dispatch(filterRooms("All"));
                 setIsAll(true);
                 break;
             case "Available":
-                setFilteredRooms(rooms.filter(room => room.status === "Available"));
+                dispatch(filterRooms("Available"));
                 setIsAvailable(true);
                 break;
             case "Booked":
-                setFilteredRooms(rooms.filter(room => room.status === "Booked"));
+                dispatch(filterRooms("Booked"));
                 setIsBooked(true);
                 break;
         }
     }
 
+    const navigateToRoomEdit = (room_id) => {
+        navigate(`/rooms/${room_id}`);
+    }
+
+    const handleDeleteRoom = (event, room_id) => {
+        event.stopPropagation();
+        dispatch(deleteRoom(room_id));
+    }
+
     let roomsOrdered = [];
-    if(rooms !== null){
-        roomsOrdered = filteredRooms.map(room => {
+    if(!rooms.loading){
+        roomsOrdered = rooms.filteredRooms.map(room => {
             let floor = "";
             switch(parseInt((room.room_id - 1) / 25) + 1){
                 case 1:
@@ -70,7 +67,7 @@ const Rooms = () => {
                     floor += (parseInt((room.room_id - 1) / 25) + 1) + "th";
                     break;
             }
-            return <StyledComponents.TR key={room.room_id}>
+            return <StyledComponents.TR key={room.room_id} onClick={() => {navigateToRoomEdit(room.room_id)}}>
                     <StyledComponents.TDMoreContent>
                         <StyledComponents.TableImg src={room.photos.split("__")[0]} alt="hotel room image"/>
                         <StyledComponents.DivText>
@@ -89,12 +86,13 @@ const Rooms = () => {
                     }
                     <td>
                         <Button $background={room.status === "Available" ? "#5AD07A" : "#E23428"} $color="white">{room.status}</Button>
+                        <StyledComponents.CrossCircled onClick={(event) => {handleDeleteRoom(event, room.room_id)}}/>
                     </td>
                 </StyledComponents.TR>;
         });
     }
     
-    return rooms === null ?
+    return rooms.loading ?
         <Loading/> :
         <main>
             <TableActionsWrapper>
@@ -107,7 +105,7 @@ const Rooms = () => {
                     <Button $background="#135846" $color="white">+ New Room</Button>
                 </NavLink>
             </TableActionsWrapper>
-            <Table headers={headers}>{roomsOrdered}</Table>
+            <Table headers={rooms.tableHeaders}>{roomsOrdered}</Table>
         </main>
     ;
 }

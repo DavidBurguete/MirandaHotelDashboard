@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "../../js/GlobalStyledComponents";
 import { NavLink } from "react-router-dom";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { SlKey } from "react-icons/sl";
@@ -83,7 +84,6 @@ export const SelectedNavLink = styled.div`
     background-color: #E23428;
 `;
 
-
 export const Dashboard = styled(LuLayoutDashboard)`
     font-size: 1.75rem;
     margin-right: 1.625rem;
@@ -118,6 +118,7 @@ export const UserCard = styled.div`
     border-radius: 1.125rem;
     box-shadow: 0px 20px 30px #00000014;
     text-align: center;
+    text-decoration: none;
 `;
 
 export const OffSet = styled.div`

@@ -26,10 +26,7 @@ export const Input = styled.input`
     color: #393939;
 `;
 
-export const InputSubmit = styled.input.attrs({
-    type: "submit",
-    value: "Create Room"
-})`
+export const InputSubmit = styled(Input)`
     align-self: flex-end;
     margin: 1rem;
     padding: 1rem;

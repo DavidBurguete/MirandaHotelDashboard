@@ -1,20 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Select from "react-select";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as FormStyled from "../../js/FormStyledComponents";
 import { useDispatch, useSelector } from "react-redux";
-import { createRoom } from "../Rooms/RoomsSlice";
+import { createRoom, updateRoom } from "../Rooms/RoomsSlice";
 
-function NewRoom(){
+function EditRoom(){
     const dispatch = useDispatch();
-    const rooms = useSelector(state => state.rooms);
-    const [selectedRoomType, setSelectedRoomType] = useState(null);
-    const [description, setDescription] = useState("");
-    const [price, setPrice] = useState(0);
-    const [hasOffer, setHasOffer] = useState(false);
-    const [discount, setDiscount] = useState(0);
-    const [selectedAmenities, setSelectedAmenities] = useState([]);
+    const { id } = useParams();
+    const room = useSelector(state => state.rooms.rooms[id - 1]);
+    const [selectedRoomType, setSelectedRoomType] = useState(room.room_type);
+    const [description, setDescription] = useState(room.description);
+    const [price, setPrice] = useState(room.price);
+    const [hasOffer, setHasOffer] = useState(room.offer);
+    const [discount, setDiscount] = useState(((1 - (room.discount / room.price)) * 100).toFixed(2));
+    const [selectedAmenities, setSelectedAmenities] = useState(room.amenities);
     const navigate = useNavigate();
+    
+    const amenititesOptions = [
+        { value: 'TV', label: 'TV' },
+        { value: 'Fridge', label: 'Fridge' },
+        { value: 'Bathtub', label: 'Bathtub' },
+        { value: 'Sea View', label: 'Sea View' },
+        { value: 'Air Conditioner',  label: 'Air Conditioner'}
+    ];
+
+    const roomTypeOptions = [
+        { value: 'Single Bed', label: 'Single Bed' },
+        { value: 'Double Bed', label: 'Double Bed' },
+        { value: 'Double Superior', label: 'Double Superior' },
+        { value: 'Suite', label: 'Suite' }
+    ];
+
+    useEffect(() => {
+        setSelectedAmenities(amenititesOptions.filter(amenity => 
+            selectedAmenities.toLowerCase().split(",").includes(amenity.value.toLowerCase())
+        ));
+        setSelectedRoomType(roomTypeOptions.filter(type => 
+            selectedRoomType.toLowerCase().split(",").includes(type.value.toLowerCase())
+        )[0]);
+    }, []);
 
     const handleRoomTypeChange = (selectedOptions) => {
         setSelectedRoomType(selectedOptions);
@@ -49,23 +74,8 @@ function NewRoom(){
     const handleAmenitiesChange = (selectedOptions) => {
         setSelectedAmenities(selectedOptions);
     };
-    
-    const amenititesOptions = [
-        { value: 'TV', label: 'TV' },
-        { value: 'Fridge', label: 'Fridge' },
-        { value: 'Bathtub', label: 'Bathtub' },
-        { value: 'Sea View', label: 'Sea View' },
-        { value: 'Air Conditioner',  label: 'Air Conditioner'}
-    ];
 
-    const roomTypeOptions = [
-        { value: 'Single Bed', label: 'Single Bed' },
-        { value: 'Double Bed', label: 'Double Bed' },
-        { value: 'Double Superior', label: 'Double Superior' },
-        { value: 'Suite', label: 'Suite' }
-    ];
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const notFullfilledData = selectedAmenities.length === 0 || 
                                   selectedRoomType === null || 
@@ -76,8 +86,8 @@ function NewRoom(){
                 return amenitie.value + ",";
             }).join("");
             amenities = amenities.substring(0, amenities.length - 1);
-            const newRoom = {
-                "room_id": rooms.rooms.length + 1,
+            const updatedRoom = {
+                "room_id": room.room_id,
                 "room_type": selectedRoomType.value,
                 "description": description,
                 "photos":  "/img/hotel-room-1.jpg__/img/hotel-room-2.jpg__/img/hotel-room-3.jpg__/img/hotel-room-4.jpg",
@@ -88,7 +98,7 @@ function NewRoom(){
                 "amenities": amenities,
                 "status": "Available"
             };
-            dispatch(createRoom(newRoom));
+            dispatch(updateRoom(updatedRoom));
             navigate("/rooms");
         }
     }
@@ -126,7 +136,7 @@ function NewRoom(){
             </FormStyled.Label>
             <FormStyled.Label htmlFor="offer">
                 Has discount?
-                <FormStyled.Input type="checkbox" name="offer" id="offer" onChange={handleHasOffer} value={hasOffer}/>
+                <FormStyled.Input type="checkbox" name="offer" id="offer" onChange={handleHasOffer} checked={hasOffer}/>
             </FormStyled.Label>
             <FormStyled.Label htmlFor="discount">
                 Percent discount
@@ -153,9 +163,9 @@ function NewRoom(){
                     }}
                 />
             </FormStyled.Label>
-            <FormStyled.InputSubmit type="submit" value="Create Room"/>
+            <FormStyled.InputSubmit type="submit" value="Update Room"/>
         </FormStyled.Form>
     </main>;
 }
 
-export default NewRoom;
+export default EditRoom;

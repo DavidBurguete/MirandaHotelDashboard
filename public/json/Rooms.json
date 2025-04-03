@@ -8,7 +8,7 @@
         "price": 10.68,
         "discount": 32.92,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": "fridge,TV",
         "status": "Available"
     },
     {

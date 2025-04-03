@@ -1,8 +1,11 @@
-import { useEffect } from "react";
 import * as StyledComponents from "./LateralMenuStyledComponents";
 import { Button } from "../../js/GlobalStyledComponents";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 function LateralMenu({isToggled}){
+    const account = useSelector(state => state.account);
+
     return <StyledComponents.Lateral id="lateral-menu" $toggled={isToggled}>
         <StyledComponents.LogoContainer>
             <StyledComponents.LogoImg src="/img/hotel.svg" alt="logo" />
@@ -34,9 +37,11 @@ function LateralMenu({isToggled}){
         <StyledComponents.UserCard>
             <StyledComponents.OffSet>
                 <StyledComponents.UserImg src="/img/david.jpeg" alt="user profile image"/>
-                <StyledComponents.UserName>David Burguete</StyledComponents.UserName>
-                <StyledComponents.UserMail>dburgueteg@gmail.com</StyledComponents.UserMail>
-                <Button $background="#EBF1EF" $color="#135846">Contact Us</Button>
+                <StyledComponents.UserName>{account.name}</StyledComponents.UserName>
+                <StyledComponents.UserMail>{account.email}</StyledComponents.UserMail>
+                <NavLink to="/account">
+                    <Button $background="#EBF1EF" $color="#135846">Your account</Button>
+                </NavLink>
             </StyledComponents.OffSet>
         </StyledComponents.UserCard>
         <StyledComponents.About>

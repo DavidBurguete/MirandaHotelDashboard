@@ -1,11 +1,14 @@
 import { HiMenuAlt2 } from "react-icons/hi";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import * as StyledComponents from "./HeaderStyledComponents";
+import { logOut } from "../../pages/Login/accountSlice";
 
 function Header({Toggler}){
     const location = useLocation();
     const [ innerText, setInnerText ] = useState("Dashboard");
+    const dispatch = useDispatch();
 
     useEffect(() => {
         switch(location.pathname){
@@ -18,14 +21,22 @@ function Header({Toggler}){
             case "/bookings":
                 setInnerText("Bookings List");
                 break;
-            case "/guests":
+            case "/contact":
                 setInnerText("Guest List");
                 break;
-            case "/concierge":
+            case "/employees":
                 setInnerText("Concierge List");
+                break;
+            case "/account":
+                setInnerText("Account");
                 break;
         }
     }, [location]);
+
+    const handleLogOut = () => {
+        dispatch(logOut());
+        localStorage.removeItem("token");
+    }
 
     return <StyledComponents.Header>
         <StyledComponents.Title>
@@ -38,7 +49,7 @@ function Header({Toggler}){
             <StyledComponents.Mail/>
             <StyledComponents.Bell/>
             <StyledComponents.Separator/>
-            <StyledComponents.LogOut/>
+            <StyledComponents.LogOut onClick={handleLogOut}/>
         </StyledComponents.TopMenu>
     </StyledComponents.Header>;
 }
