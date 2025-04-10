@@ -7,7 +7,6 @@ import * as StyledComponents from "./HeaderStyledComponents";
 function Header({Toggler, loggedAccountDispatch}){
     const location = useLocation();
     const [ innerText, setInnerText ] = useState("Dashboard");
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -50,7 +49,7 @@ function Header({Toggler, loggedAccountDispatch}){
             <StyledComponents.Mail/>
             <StyledComponents.Bell/>
             <StyledComponents.Separator/>
-            <StyledComponents.LogOut onClick={handleLogOut}/>
+            <StyledComponents.LogOut data-cy="logOut" onClick={handleLogOut}/>
         </StyledComponents.TopMenu>
     </StyledComponents.Header>;
 }

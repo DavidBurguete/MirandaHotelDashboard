@@ -13,14 +13,18 @@ function Login({loggedAccount, loggedAccountDispatch}){
     useEffect(() => {
         if(localStorage.getItem("token") !== null){
             loggedAccountDispatch({type: "login/loginWithToken", token: localStorage.getItem("token")});
-            navigate("/dashboard");
         }
     }, []);
+
+    useEffect(() => {
+        if(loggedAccount.logged){
+            navigate("/dashboard");
+        }
+    }, [loggedAccount]);
 
     const handleLogin = (e) => {
         e.preventDefault();
         loggedAccountDispatch({type: "login/login", user: username, passwd: passwd});
-        navigate("/dashboard");
     }
 
     const handleUsername = (username) => {
@@ -34,17 +38,17 @@ function Login({loggedAccount, loggedAccountDispatch}){
     return <PageWrapper>
         <StyledComponents.FormWrapper>
             <StyledComponents.LogoImg src="/img/hotel.svg" alt="hotel logo" />
-            {loggedAccount.error !== null && <StyledComponents.Error>{loggedAccount.error}</StyledComponents.Error>}
+            {loggedAccount.error !== null && <StyledComponents.Error data-cy="errorMessage">{loggedAccount.error}</StyledComponents.Error>}
             <StyledForm.Form onSubmit={handleLogin}>
                 <StyledForm.Label htmlFor="username">
                     User
-                    <StyledForm.Input type="text" name="username" id="username" placeholder="Enter your username" onChange={handleUsername} value={username}/>
+                    <StyledForm.Input data-cy="username" type="text" name="username" id="username" placeholder="Enter your username" onChange={handleUsername} value={username}/>
                 </StyledForm.Label>
                 <StyledForm.Label htmlFor="passwd">
                     Password
-                    <StyledForm.Input type="password" name="passwd" id="passwd" placeholder="Enter your password" onChange={handlePasswd} value={passwd} autoComplete="off"/>
+                    <StyledForm.Input data-cy="passwd" type="password" name="passwd" id="passwd" placeholder="Enter your password" onChange={handlePasswd} value={passwd} autoComplete="off"/>
                 </StyledForm.Label>
-                <StyledForm.InputSubmit type="submit" value="Login"/>
+                <StyledForm.InputSubmit data-cy="loginButton" type="submit" value="Login"/>
             </StyledForm.Form>
         </StyledComponents.FormWrapper>
     </PageWrapper>;
