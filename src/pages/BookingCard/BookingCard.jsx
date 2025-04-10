@@ -7,6 +7,10 @@ import { Navigation, Pagination } from "swiper/modules";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 import 'swiper/css/bundle';
+import PageWrapper from "../../components/PageWrapper";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBookings } from "../Bookings/BookingsSlice";
+import { fetchRooms } from "../Rooms/RoomsSlice";
 
 const fullMonth = (month) => {
     switch(month){
@@ -69,6 +73,9 @@ const formatDay = (day) => {
 }
 
 function BookingCard(){
+    const dispatch = useDispatch();
+    const bookings = useSelector(state => state.bookings);
+    const { rooms } = useSelector(state => state.rooms);
     const [ bookedCard, setBookedCard ] = useState(null);
     const [ room, setRoom ] = useState(null);
     const [ floor, setFloor ] = useState("");
@@ -77,22 +84,21 @@ function BookingCard(){
     const { id } = useParams();
     
     useEffect(() => {
-        fetch("/json/Bookings.json", { mode: "cors" })
-            .then((response) => response.json())
-            .then((response) => {
-                setBookedCard(response[id - 1]);
-            })
-            .catch((error) => console.error(error));
+        if(bookings.loading){
+            dispatch(fetchBookings());
+            dispatch(fetchRooms());
+        }
     }, []);
 
     useEffect(() => {
+        if(!bookings.loading){
+            setBookedCard(bookings.bookings[id - 1]);
+        }
+    }, [bookings]);
+
+    useEffect(() => {
         if(bookedCard !== null){
-            fetch("/json/Rooms.json", { mode: "cors" })
-                .then((response) => response.json())
-                .then((response) => {
-                    setRoom(response[bookedCard.room_id - 1]);
-                })
-                .catch((error) => console.error(error));
+            setRoom(rooms[bookedCard.room_id - 1]);
             let check_in = new Date(bookedCard.check_in_date).toString().split(" ").slice(1, 4);
             check_in[0] = fullMonth(check_in[0]);
             check_in[1] = formatDay(check_in[1]);
@@ -126,7 +132,7 @@ function BookingCard(){
 
     return room === null ? 
         <Loading/> :
-        <main>
+        <PageWrapper>
             <StyledComponents.Card>
                 <StyledComponents.CardTextWrapper>
                     <StyledComponents.Name>{bookedCard.client_name}</StyledComponents.Name>
@@ -188,7 +194,7 @@ function BookingCard(){
                     <StyledComponents.BookMark $background={room.status === "Available" ? "#5AD07A" : "#E23428"}>{room.status}</StyledComponents.BookMark>
                 </StyledComponents.CardImagesWrapper>
             </StyledComponents.Card>
-        </main>;
+        </PageWrapper>;
 }
 
 export default BookingCard;

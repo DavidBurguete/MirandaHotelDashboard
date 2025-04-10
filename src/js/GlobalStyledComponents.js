@@ -6,8 +6,9 @@ export const Button = styled.button`
     max-width: 10rem;
     border: 0;
     border-radius: 0.5rem;
-    background-color: ${props => props.$background ? props.$background : "white"};
-    color: ${props => props.$color ? props.$color : "black"};
+    background-color: ${props => typeof props.$background === "string" ? props.$background : "white"};
+    color: ${props => typeof props.$color === "string" ? props.$color : "black"};
+    cursor: pointer;
 `;
 
 export const Filters = styled.div`

@@ -17,18 +17,6 @@ export const FormBottomActionsWrappe = styled.div`
     justify-content: space-between;
 `;
 
-export const CreateAccountToggler = styled.p`
-    padding: 1.25rem;
-    width: fit-content;
-    font-family: Poppins;
-    font-weight: 600;
-    font-size: 0.875rem;
-    line-height: 3.125rem;
-    color: #197EFF;
-    text-decoration: underline;
-    cursor: pointer;
-`;
-
 export const Error = styled.p`
     padding: 1rem;
     font-family: Poppins;

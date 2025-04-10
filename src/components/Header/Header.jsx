@@ -1,18 +1,18 @@
 import { HiMenuAlt2 } from "react-icons/hi";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import * as StyledComponents from "./HeaderStyledComponents";
-import { logOut } from "../../pages/Login/accountSlice";
 
-function Header({Toggler}){
+function Header({Toggler, loggedAccountDispatch}){
     const location = useLocation();
     const [ innerText, setInnerText ] = useState("Dashboard");
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         switch(location.pathname){
-            case "/":
+            case "/dashboard":
                 setInnerText("Dashboard");
                 break;
             case "/rooms":
@@ -34,8 +34,9 @@ function Header({Toggler}){
     }, [location]);
 
     const handleLogOut = () => {
-        dispatch(logOut());
+        loggedAccountDispatch({type: "login/logout"});
         localStorage.removeItem("token");
+        navigate("/login");
     }
 
     return <StyledComponents.Header>

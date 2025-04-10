@@ -26,6 +26,12 @@ export const Input = styled.input`
     color: #393939;
 `;
 
+export const InputCheckBox = styled(Input)`
+    justify-self: flex-start;
+    width: 1.25rem;
+    height: 1.25rem;
+`;
+
 export const InputSubmit = styled(Input)`
     align-self: flex-end;
     margin: 1rem;
@@ -38,4 +44,5 @@ export const InputSubmit = styled(Input)`
     font-size: 1rem;
     color: white;
     background-color: #135846;
+    cursor: pointer;
 `;

@@ -4,17 +4,19 @@ import { useNavigate, useParams } from "react-router-dom";
 import * as FormStyled from "../../js/FormStyledComponents";
 import { useDispatch, useSelector } from "react-redux";
 import { createRoom, updateRoom } from "../Rooms/RoomsSlice";
+import PageWrapper from "../../components/PageWrapper";
 
 function EditRoom(){
     const dispatch = useDispatch();
     const { id } = useParams();
+    const { rooms } = useSelector(state => state.rooms);
     const room = useSelector(state => state.rooms.rooms[id - 1]);
-    const [selectedRoomType, setSelectedRoomType] = useState(room.room_type);
-    const [description, setDescription] = useState(room.description);
-    const [price, setPrice] = useState(room.price);
-    const [hasOffer, setHasOffer] = useState(room.offer);
-    const [discount, setDiscount] = useState(((1 - (room.discount / room.price)) * 100).toFixed(2));
-    const [selectedAmenities, setSelectedAmenities] = useState(room.amenities);
+    const [selectedRoomType, setSelectedRoomType] = useState([]);
+    const [description, setDescription] = useState("");
+    const [price, setPrice] = useState(0);
+    const [hasOffer, setHasOffer] = useState(false);
+    const [discount, setDiscount] = useState(0);
+    const [selectedAmenities, setSelectedAmenities] = useState([]);
     const navigate = useNavigate();
     
     const amenititesOptions = [
@@ -33,13 +35,25 @@ function EditRoom(){
     ];
 
     useEffect(() => {
-        setSelectedAmenities(amenititesOptions.filter(amenity => 
-            selectedAmenities.toLowerCase().split(",").includes(amenity.value.toLowerCase())
-        ));
-        setSelectedRoomType(roomTypeOptions.filter(type => 
-            selectedRoomType.toLowerCase().split(",").includes(type.value.toLowerCase())
-        )[0]);
+        if(rooms.loading){
+            dispatch(fetchRooms());
+        }
     }, []);
+
+    useEffect(() => {
+        if(room !== undefined){
+            setSelectedRoomType(roomTypeOptions.filter(type => 
+                room.room_type.toLowerCase().split(",").includes(type.value.toLowerCase())
+            )[0]);
+            setDescription(room.description);
+            setPrice(room.price);
+            setHasOffer(room.offer);
+            setDiscount(((1 - (room.discount / room.price)) * 100).toFixed(2));
+            setSelectedAmenities(amenititesOptions.filter(amenity => 
+                room.amenities.toLowerCase().split(",").includes(amenity.value.toLowerCase())
+            ));
+        }
+    }, [room]);
 
     const handleRoomTypeChange = (selectedOptions) => {
         setSelectedRoomType(selectedOptions);
@@ -103,7 +117,7 @@ function EditRoom(){
         }
     }
 
-    return <main>
+    return <PageWrapper>
         <FormStyled.Form onSubmit={handleSubmit}>
             <FormStyled.Label htmlFor="room_type">
                 Room type
@@ -136,7 +150,7 @@ function EditRoom(){
             </FormStyled.Label>
             <FormStyled.Label htmlFor="offer">
                 Has discount?
-                <FormStyled.Input type="checkbox" name="offer" id="offer" onChange={handleHasOffer} checked={hasOffer}/>
+                <FormStyled.InputCheckBox type="checkbox" name="offer" id="offer" onChange={handleHasOffer} checked={hasOffer}/>
             </FormStyled.Label>
             <FormStyled.Label htmlFor="discount">
                 Percent discount
@@ -165,7 +179,7 @@ function EditRoom(){
             </FormStyled.Label>
             <FormStyled.InputSubmit type="submit" value="Update Room"/>
         </FormStyled.Form>
-    </main>;
+    </PageWrapper>;
 }
 
 export default EditRoom;

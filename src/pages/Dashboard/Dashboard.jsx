@@ -6,6 +6,7 @@ import { LuCalendarCheck2 } from "react-icons/lu";
 import { IoLogInOutline } from "react-icons/io5";
 import { IoLogOutOutline } from "react-icons/io5";
 import * as StyledComponents from "./DashboardStyledComponents";
+import PageWrapper from "../../components/PageWrapper";
 
 function Dashboard(){
     const [ messages, setMessages ] = useState(null);
@@ -21,7 +22,7 @@ function Dashboard(){
 
     return messages === null ? 
         <Loading/> :
-        <main>
+        <PageWrapper>
             <StyledComponents.KPIs>
                 <StyledComponents.KPI>
                     <StyledComponents.Bookings>
@@ -61,7 +62,7 @@ function Dashboard(){
                 </StyledComponents.KPI>
             </StyledComponents.KPIs>
             <PendingReviews messages={messages} setMessages={setMessages}/>
-        </main>;
+        </PageWrapper>;
 }
 
 export default Dashboard;

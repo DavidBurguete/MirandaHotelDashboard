@@ -1,11 +1,7 @@
 import * as StyledComponents from "./LateralMenuStyledComponents";
 import { Button } from "../../js/GlobalStyledComponents";
-import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 
-function LateralMenu({isToggled}){
-    const account = useSelector(state => state.account);
-
+function LateralMenu({isToggled, loggedAccount}){
     return <StyledComponents.Lateral id="lateral-menu" $toggled={isToggled}>
         <StyledComponents.LogoContainer>
             <StyledComponents.LogoImg src="/img/hotel.svg" alt="logo" />
@@ -14,7 +10,7 @@ function LateralMenu({isToggled}){
                 <StyledComponents.H1>Hotel Admin Dashboard</StyledComponents.H1>
             </StyledComponents.LogoText>
         </StyledComponents.LogoContainer>
-        <StyledComponents.StyledNavLink to="/">
+        <StyledComponents.StyledNavLink to="/dashboard">
             <StyledComponents.SelectedNavLink/>
             <StyledComponents.Dashboard/>DashBoard
         </StyledComponents.StyledNavLink>
@@ -37,11 +33,9 @@ function LateralMenu({isToggled}){
         <StyledComponents.UserCard>
             <StyledComponents.OffSet>
                 <StyledComponents.UserImg src="/img/david.jpeg" alt="user profile image"/>
-                <StyledComponents.UserName>{account.name}</StyledComponents.UserName>
-                <StyledComponents.UserMail>{account.email}</StyledComponents.UserMail>
-                <NavLink to="/account">
-                    <Button $background="#EBF1EF" $color="#135846">Your account</Button>
-                </NavLink>
+                <StyledComponents.UserName>{loggedAccount.name}</StyledComponents.UserName>
+                <StyledComponents.UserMail>{loggedAccount.email}</StyledComponents.UserMail>
+                <Button $background="#EBF1EF" $color="#135846">Contact Us</Button>
             </StyledComponents.OffSet>
         </StyledComponents.UserCard>
         <StyledComponents.About>

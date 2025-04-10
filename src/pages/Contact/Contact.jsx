@@ -4,6 +4,7 @@ import PendingReviews from "../../components/PendingReviews/PendingReviews";
 import Table from "../../components/Table/Table";
 import { Filter, Filters } from "../../js/GlobalStyledComponents";
 import * as StyledComponents from "./ContactStyledComponents";
+import PageWrapper from "../../components/PageWrapper";
 
 function Contact(){
     const [ messages, setMessages ] = useState(null);
@@ -62,7 +63,7 @@ function Contact(){
     
     return messages === null ? 
         <Loading/> :
-        <main>
+        <PageWrapper>
             <PendingReviews messages={messages} setMessages={setMessages}/>
             <Filters>
                 <Filter $filter={isAll} onClick={setFilter}>All Messages</Filter>
@@ -94,7 +95,7 @@ function Contact(){
                     })}
                 </Table>
             }
-        </main>;
+        </PageWrapper>;
 }
 
 export default Contact;

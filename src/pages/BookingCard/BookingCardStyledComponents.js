@@ -74,6 +74,7 @@ export const Description = styled.p`
 
 export const AmenityCard = styled(Button)`
     margin: 0;
+    margin-right: 1rem;
     text-transform: capitalize;
     cursor: default;
 `;

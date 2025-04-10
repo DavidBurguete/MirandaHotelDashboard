@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
 import * as FormStyled from "../../js/FormStyledComponents";
 import { useDispatch, useSelector } from "react-redux";
-import { createRoom } from "../Rooms/RoomsSlice";
+import { createRoom, fetchRooms } from "../Rooms/RoomsSlice";
+import PageWrapper from "../../components/PageWrapper";
+import Loading from "../../components/Loading";
 
 function NewRoom(){
     const dispatch = useDispatch();
@@ -15,6 +17,12 @@ function NewRoom(){
     const [discount, setDiscount] = useState(0);
     const [selectedAmenities, setSelectedAmenities] = useState([]);
     const navigate = useNavigate();
+    
+    useEffect(() => {
+        if(rooms.loading){
+            dispatch(fetchRooms());
+        }
+    }, []);
 
     const handleRoomTypeChange = (selectedOptions) => {
         setSelectedRoomType(selectedOptions);
@@ -93,7 +101,9 @@ function NewRoom(){
         }
     }
 
-    return <main>
+    return rooms.loading ? 
+    <Loading/> :
+    <PageWrapper>
         <FormStyled.Form onSubmit={handleSubmit}>
             <FormStyled.Label htmlFor="room_type">
                 Room type
@@ -126,7 +136,7 @@ function NewRoom(){
             </FormStyled.Label>
             <FormStyled.Label htmlFor="offer">
                 Has discount?
-                <FormStyled.Input type="checkbox" name="offer" id="offer" onChange={handleHasOffer} value={hasOffer}/>
+                <FormStyled.InputCheckBox type="checkbox" name="offer" id="offer" onChange={handleHasOffer} value={hasOffer}/>
             </FormStyled.Label>
             <FormStyled.Label htmlFor="discount">
                 Percent discount
@@ -155,7 +165,7 @@ function NewRoom(){
             </FormStyled.Label>
             <FormStyled.InputSubmit type="submit" value="Create Room"/>
         </FormStyled.Form>
-    </main>;
+    </PageWrapper>;
 }
 
 export default NewRoom;

@@ -5,6 +5,7 @@ import { Error } from "../Login/LoginStyledComponents";
 import { updateAccount, deleteAccount } from "../Login/accountSlice";
 import { Button } from "../../js/GlobalStyledComponents";
 import styled from "styled-components";
+import PageWrapper from "../../components/PageWrapper";
 
 const DeleteAccount = styled(Button)`
     align-self: flex-end;
@@ -95,7 +96,7 @@ function UserAccount(){
         localStorage.removeItem("token");
     }
 
-    return <main>
+    return <PageWrapper>
         {isEmptyUsername && <Error>The username cannot be empty</Error>}
         {isNonValidEmail && <Error>The email has to be a valid format (i.e. user@example.com)</Error>}
         {isNonValidPasswd && <Error>The password must contain at least 5 characters</Error>}
@@ -124,7 +125,7 @@ function UserAccount(){
                     <RevertDeleteAccount $background="#300000" $color="#E23428" onClick={handleDeleteAccount}>No</RevertDeleteAccount>
                 </ConfirmDeleteAccountWrapper>}
         </StyledForm.Form>
-    </main>;
+    </PageWrapper>;
 }
 
 export default UserAccount;

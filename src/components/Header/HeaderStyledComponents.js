@@ -26,6 +26,7 @@ export const ToggleLateralMenu = styled.button`
     border: 0;
     background-color: transparent;
     font-size: 1.75rem;
+    cursor: pointer;
 `;
 
 export const H2 = styled.h2`

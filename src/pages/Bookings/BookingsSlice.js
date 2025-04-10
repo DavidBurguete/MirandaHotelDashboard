@@ -42,7 +42,6 @@ export const filterBookings = createAsyncThunk("bookings/filterBookings", async(
 });
 
 export const sortBookings = createAsyncThunk("bookings/sortBookings", async(sortBy, thunkAPI) =>{
-    console.log(sortBy);
     const state = thunkAPI.getState();
     const { bookings } = state.bookings;
     let orderedBookings = [];
