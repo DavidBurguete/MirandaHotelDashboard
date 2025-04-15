@@ -28,7 +28,8 @@
     "react-router-dom": "^7.4.0",
     "react-select": "^5.10.1",
     "styled-components": "^6.1.16",
-    "swiper": "^11.2.6"
+    "swiper": "^11.2.6",
+    "typescript": "^5.8.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

@@ -1,0 +1,54 @@
+import styled from "styled-components";
+
+interface ButtonInterface {
+    $background: string;
+    $color: string;
+}
+
+interface FilterInterface {
+    $filter: boolean;
+}
+
+interface PageWrapperInterface {
+    $toggleForWidth: boolean;
+}
+
+export const Button = styled.button<ButtonInterface>`
+    margin-block: 1rem;
+    padding: 0.875rem 2.5rem;
+    max-width: 10rem;
+    border: 0;
+    border-radius: 0.5rem;
+    background-color: ${props => typeof props.$background === "string" ? props.$background : "white"};
+    color: ${props => typeof props.$color === "string" ? props.$color : "black"};
+    cursor: pointer;
+`;
+
+export const Filters = styled.div`
+    display: flex;
+    margin: 1rem;
+`;
+
+export const Filter = styled.p<FilterInterface>`
+    padding: 1rem 1.5rem;
+    border-bottom: ${({$filter}) => $filter ? "3px solid #135846B0" : "2px solid #6E6E6E70"};
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 1rem;
+    color: ${({$filter}) => $filter ? "#135846" : "#6E6E6E"};
+    cursor: pointer;
+`;
+
+export const TableActionsWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
+export const PageWrapper = styled.div<PageWrapperInterface>`
+    display: flex;
+    flex-direction: column;
+    min-width: ${props => props.$toggleForWidth ? "calc(100% - 21.5rem)" : "100%"};
+    width: 100%;
+    height: fit-content;
+    transition: 200ms ease-in-out;
+`;
