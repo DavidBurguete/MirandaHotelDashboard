@@ -1,7 +1,6 @@
 import { HiMenuAlt2 } from "react-icons/hi";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import * as StyledComponents from "./HeaderStyledComponents";
 
 function Header({Toggler, loggedAccountDispatch}){
@@ -26,8 +25,8 @@ function Header({Toggler, loggedAccountDispatch}){
             case "/employees":
                 setInnerText("Concierge List");
                 break;
-            case "/account":
-                setInnerText("Account");
+            case "/users":
+                setInnerText("Users");
                 break;
         }
     }, [location]);

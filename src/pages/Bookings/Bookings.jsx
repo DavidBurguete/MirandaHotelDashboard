@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import Table from "../../components/Table/Table";
 import * as StyledComponents from "./BookingsStyledComponents";
-import { Button, Filters, Filter } from "../../js/GlobalStyledComponents";
+import { Button, Filters, Filter, TableActionsWrapper } from "../../js/GlobalStyledComponents";
 import Loading from "../../components/Loading";
-import { useNavigate } from "react-router-dom";
-import { addHeaders, fetchBookings, filterBookings, sortBookings } from "./BookingsSlice";
+import { NavLink, useNavigate } from "react-router-dom";
+import { addHeaders, deleteBooking, fetchBookings, filterBookings, sortBookings } from "./BookingsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRooms } from "../Rooms/RoomsSlice";
 import PageWrapper from "../../components/PageWrapper";
@@ -63,6 +63,11 @@ function Bookings(){
         navigate(`/bookings/${booking_id}`);
     }
 
+    const handleDeleteBooking = (event, booking_id) => {
+        event.stopPropagation();
+        dispatch(deleteBooking(booking_id));
+    }
+
     useEffect(() => {
         if(bookings.bookings.length > 0 && rooms.length > 0){
             setBookingsOrdered(bookings.filteredBookings.map(booking => {
@@ -96,9 +101,10 @@ function Bookings(){
                     <StyledComponents.TD>{booking.check_in_date}</StyledComponents.TD>
                     <StyledComponents.TD>{booking.check_out_date}</StyledComponents.TD>
                     <StyledComponents.TD><Button $background="#EBF1EF" $color="#135846">View Notes</Button></StyledComponents.TD>
-                    <StyledComponents.TD>{rooms[booking.booking_id - 1].room_type}</StyledComponents.TD>
+                    <StyledComponents.TD>{rooms[booking.room_id - 1].room_type}</StyledComponents.TD>
                     <td>
                         <Button $background={status.background} $color={status.color}>{booking.status}</Button>
+                        <StyledComponents.CrossCircled onClick={(event) => {handleDeleteBooking(event, booking.booking_id)}}/>
                     </td>
                 </StyledComponents.TR>;
             }));
@@ -133,12 +139,17 @@ function Bookings(){
     return bookings.loading ?
         <Loading/> :
         <PageWrapper>
-            <Filters>
-                <Filter onClick={setFilter} $filter={isAll}>All Bookings</Filter>
-                <Filter onClick={setFilter} $filter={isIn}>Checking In</Filter>
-                <Filter onClick={setFilter} $filter={isOut}>Checking Out</Filter>
-                <Filter onClick={setFilter} $filter={isProgress}>In Progress</Filter>
-            </Filters>
+            <TableActionsWrapper>
+                <Filters>
+                    <Filter onClick={setFilter} $filter={isAll}>All Bookings</Filter>
+                    <Filter onClick={setFilter} $filter={isIn}>Checking In</Filter>
+                    <Filter onClick={setFilter} $filter={isOut}>Checking Out</Filter>
+                    <Filter onClick={setFilter} $filter={isProgress}>In Progress</Filter>
+                </Filters>
+                <NavLink to="/bookings/new">
+                    <Button $background="#135846" $color="white">+ New Booking</Button>
+                </NavLink>
+            </TableActionsWrapper>  
             <Table headers={bookings.tableHeaders} action={sortBookings}>{bookingsOrdered}</Table>
         </PageWrapper>
     ;

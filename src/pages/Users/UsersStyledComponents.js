@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { RxCrossCircled } from "react-icons/rx";
 
 export const TR = styled.tr`
-    text-transform: capitalize;
-
     &>*{
         padding: 1.5rem;
     }

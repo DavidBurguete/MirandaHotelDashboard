@@ -5,27 +5,15 @@ import Bookings from './pages/Bookings/Bookings';
 import BookingCard from './pages/BookingCard/BookingCard';
 import Contact from './pages/Contact/Contact';
 import Dashboard from './pages/Dashboard/Dashboard';
-import UserAccount from './pages/UserAccount/UserAccount';
 import EditRoom from './pages/EditRoom/EditRoom';
 import GlobalLayout from './pages/GlobalLayout/GlobalLayout';
 import Login from './pages/Login/Login';
 import './styles.css';
-import { useEffect, useReducer, useState } from 'react';
-
-const fetchUsers = async () => {
-    try{
-        const response = await fetch("/json/Users.json");
-
-        if(!response.ok){
-            throw new Error("An error occurred");
-        }
-
-        return await response.json();
-    }
-    catch(error){
-        throw new Error(error);
-    }
-}
+import { useReducer } from 'react';
+import NewBooking from './pages/NewBooking/NewBooking';
+import Users from './pages/Users/Users';
+import CreateAccount from './pages/CreateAccount/CreateAccount';
+import EditAccount from './pages/EditAccount/EditAccount';
 
 const userData = [
     {
@@ -117,9 +105,12 @@ function App() {
                     <Route path="/rooms/new" element={<NewRoom />} />
                     <Route path="/rooms/:id" element={<EditRoom />} />
                     <Route path="/bookings" element={<Bookings />} />
+                    <Route path="/bookings/new" element={<NewBooking />} />
                     <Route path="/bookings/:id" element={<BookingCard />} />
                     <Route path="/contact" element={<Contact />} />
-                    <Route path="/account" element={<UserAccount />} />
+                    <Route path="/users" element={<Users loggedAccount={loggedAccount}/>} />
+                    <Route path="/users/new" element={<CreateAccount/>} />
+                    <Route path="/users/:id" element={<EditAccount/>} />
                     <Route path="*" element={<></>} />
                 </Route>
             </Routes>

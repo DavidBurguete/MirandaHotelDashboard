@@ -1,17 +1,20 @@
 [
     {
+        "id": 1,
         "user": "David Burguete",
         "email": "dburgueteg@gmail.com",
         "passwd": "Esparadrapo",
         "token": "er57rhfw35btrGbtVewffq3FB5h"
     },
     {
+        "id": 2,
         "user": "admin",
         "email": "admin@localhost.com",
         "passwd": "admin",
         "token": "rtbu56BTSrww4TuKBEc1wevBN5"
     },
     {
+        "id": 3,
         "user": "usuario",
         "email": "user@example.com",
         "passwd": "contrasena",
