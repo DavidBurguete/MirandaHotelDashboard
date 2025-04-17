@@ -1,19 +1,9 @@
 import styled from "styled-components";
 
-interface ButtonInterface {
+export const Button = styled.button<{
     $background: string;
     $color: string;
-}
-
-interface FilterInterface {
-    $filter: boolean;
-}
-
-interface PageWrapperInterface {
-    $toggleForWidth: boolean;
-}
-
-export const Button = styled.button<ButtonInterface>`
+}>`
     margin-block: 1rem;
     padding: 0.875rem 2.5rem;
     max-width: 10rem;
@@ -29,7 +19,9 @@ export const Filters = styled.div`
     margin: 1rem;
 `;
 
-export const Filter = styled.p<FilterInterface>`
+export const Filter = styled.p<{
+    $filter: boolean;
+}>`
     padding: 1rem 1.5rem;
     border-bottom: ${({$filter}) => $filter ? "3px solid #135846B0" : "2px solid #6E6E6E70"};
     font-family: Poppins;
@@ -44,7 +36,9 @@ export const TableActionsWrapper = styled.div`
     justify-content: space-between;
 `;
 
-export const PageWrapper = styled.div<PageWrapperInterface>`
+export const PageWrapper = styled.div<{
+    $toggleForWidth: boolean;
+}>`
     display: flex;
     flex-direction: column;
     min-width: ${props => props.$toggleForWidth ? "calc(100% - 21.5rem)" : "100%"};

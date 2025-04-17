@@ -1,19 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
-
-interface User {
-    id: number;
-    user: string;
-    email: string;
-    password: string;
-}
-
-interface UserState {
-    tableHeaders: string[];
-    users: User[];
-    loading: boolean;
-    error: string | null;
-}
+import { User, UserState } from "../../interfaces/UserInterfaces";
 
 export const fetchUsers = createAsyncThunk<User[]>("users/fetchUsers", async() => {
     return new Promise<User[]>((resolve, reject) => {
@@ -45,7 +32,7 @@ export const createUser = createAsyncThunk<User[], User>("users/createUser", asy
 export const updateUser = createAsyncThunk<User[], User>("users/updateUser", async (updatedUser: User, thunkAPI) => {
     const state = thunkAPI.getState() as RootState;
     const { users } = state.users;
-    const updatedUsers = users.map(user => {
+    const updatedUsers = users.map((user: User) => {
         if(user.id !== updatedUser.id){
             return user;
         }
@@ -59,7 +46,7 @@ export const updateUser = createAsyncThunk<User[], User>("users/updateUser", asy
 export const deleteUser = createAsyncThunk<User[], number>("users/deleteUser", async (user_id: number, thunkAPI) => {
     const state = thunkAPI.getState() as RootState;
     const { users } = state.users;
-    const deletedUser = users.filter(user => user.id !== user_id);
+    const deletedUser = users.filter((user: User) => user.id !== user_id);
     return deletedUser;
 });
 
@@ -77,24 +64,24 @@ const usersSlice = createSlice({
     } as UserState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(fetchUsers.fulfilled, (state, action) => {
-            state.users = action.payload;
+        builder.addCase(fetchUsers.fulfilled, (state: UserState, action) => {
+            state.users = action.payload as User[];
             state.loading = false;
             state.error = null;
-        }).addCase(fetchUsers.rejected, (state, action) => {
+        }).addCase(fetchUsers.rejected, (state: UserState, action) => {
             state.loading = false;
             state.error = action.error.message as string | null;
-        }).addCase(createUser.fulfilled, (state, action) => {
-            state.users = action.payload;
-        }).addCase(createUser.rejected, (state, action) => {
+        }).addCase(createUser.fulfilled, (state: UserState, action) => {
+            state.users = action.payload as User[];
+        }).addCase(createUser.rejected, (state: UserState, action) => {
             state.error = action.error.message as string | null;
-        }).addCase(updateUser.fulfilled, (state, action) => {
-            state.users = action.payload;
-        }).addCase(updateUser.rejected, (state, action) => {
+        }).addCase(updateUser.fulfilled, (state: UserState, action) => {
+            state.users = action.payload as User[];
+        }).addCase(updateUser.rejected, (state: UserState, action) => {
             state.error = action.error.message as string | null;
-        }).addCase(deleteUser.fulfilled, (state, action) => {
-            state.users = action.payload;
-        }).addCase(deleteUser.rejected, (state, action) => {
+        }).addCase(deleteUser.fulfilled, (state: UserState, action) => {
+            state.users = action.payload as User[];
+        }).addCase(deleteUser.rejected, (state: UserState, action) => {
             state.error = action.error.message as string | null;
         });
     }
