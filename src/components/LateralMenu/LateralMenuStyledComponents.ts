@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Button } from "../../js/GlobalStyledComponents";
 import { NavLink } from "react-router-dom";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { SlKey } from "react-icons/sl";
@@ -7,7 +6,9 @@ import { LuCalendarCheck2 } from "react-icons/lu";
 import { RiUser6Line } from "react-icons/ri";
 import { IoExtensionPuzzleOutline } from "react-icons/io5";
 
-export const Lateral = styled.nav`
+export const Lateral = styled.nav<{
+    $toggled: boolean;
+}>`
     display: flex;
     flex-direction: column;
     position: relative;

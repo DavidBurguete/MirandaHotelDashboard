@@ -19,6 +19,8 @@ export const TH = styled.th`
     cursor: default;
 `;
 
-export const THSort = styled(TH)`
+export const THSort = styled(TH)<{
+    $as_button: boolean;
+}>`
     cursor: ${({$as_button}) => $as_button ? "pointer" : "default"};
 `;

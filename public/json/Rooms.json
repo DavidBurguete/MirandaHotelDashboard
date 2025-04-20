@@ -8,7 +8,7 @@
         "price": 10.68,
         "discount": 32.92,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge,TV",
+        "amenities": ["Fridge","TV"],
         "status": "Available"
     },
     {
@@ -20,7 +20,7 @@
         "price": 69.68,
         "discount": 97.51,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Available"
     },
     {
@@ -32,7 +32,7 @@
         "price": 68.55,
         "discount": 45.12,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Available"
     },
     {
@@ -44,7 +44,7 @@
         "price": 99.1,
         "discount": 68.69,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Booked"
     },
     {
@@ -56,7 +56,7 @@
         "price": 51.06,
         "discount": 30.49,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Booked"
     },
     {
@@ -68,7 +68,7 @@
         "price": 76.47,
         "discount": 14.92,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Booked"
     },
     {
@@ -80,7 +80,7 @@
         "price": 98.75,
         "discount": 53.3,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Available"
     },
     {
@@ -92,7 +92,7 @@
         "price": 34.45,
         "discount": 9.13,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Available"
     },
     {
@@ -104,7 +104,7 @@
         "price": 80.71,
         "discount": 91.37,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Booked"
     },
     {
@@ -116,7 +116,7 @@
         "price": 14.26,
         "discount": 71.14,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Booked"
     },
     {
@@ -128,7 +128,7 @@
         "price": 14.05,
         "discount": 10.37,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Booked"
     },
     {
@@ -140,7 +140,7 @@
         "price": 65.03,
         "discount": 75.78,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Available"
     },
     {
@@ -152,7 +152,7 @@
         "price": 54.09,
         "discount": 8.16,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Available"
     },
     {
@@ -164,7 +164,7 @@
         "price": 46.04,
         "discount": 72.72,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Available"
     },
     {
@@ -176,7 +176,7 @@
         "price": 3.18,
         "discount": 92.63,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Available"
     },
     {
@@ -188,7 +188,7 @@
         "price": 41.28,
         "discount": 30.62,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Available"
     },
     {
@@ -200,7 +200,7 @@
         "price": 57.77,
         "discount": 11.99,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Booked"
     },
     {
@@ -212,7 +212,7 @@
         "price": 74.15,
         "discount": 94.27,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Available"
     },
     {
@@ -224,7 +224,7 @@
         "price": 82.94,
         "discount": 78.17,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Available"
     },
     {
@@ -236,7 +236,7 @@
         "price": 13.63,
         "discount": 49.41,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Booked"
     },
     {
@@ -248,7 +248,7 @@
         "price": 91.26,
         "discount": 15.98,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Booked"
     },
     {
@@ -260,7 +260,7 @@
         "price": 56.28,
         "discount": 62.21,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Booked"
     },
     {
@@ -272,7 +272,7 @@
         "price": 13.47,
         "discount": 79.1,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Available"
     },
     {
@@ -284,7 +284,7 @@
         "price": 24.9,
         "discount": 96.2,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Available"
     },
     {
@@ -296,7 +296,7 @@
         "price": 9.57,
         "discount": 17.76,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Available"
     },
     {
@@ -308,7 +308,7 @@
         "price": 85.52,
         "discount": 87.32,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Available"
     },
     {
@@ -320,7 +320,7 @@
         "price": 47.97,
         "discount": 47.42,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Available"
     },
     {
@@ -332,7 +332,7 @@
         "price": 38.88,
         "discount": 23.16,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Booked"
     },
     {
@@ -344,7 +344,7 @@
         "price": 54.1,
         "discount": 33.44,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Booked"
     },
     {
@@ -356,7 +356,7 @@
         "price": 95.63,
         "discount": 4.05,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Booked"
     },
     {
@@ -368,7 +368,7 @@
         "price": 95.2,
         "discount": 66.21,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Available"
     },
     {
@@ -380,7 +380,7 @@
         "price": 1.73,
         "discount": 78.07,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Available"
     },
     {
@@ -392,7 +392,7 @@
         "price": 50.2,
         "discount": 76.04,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Available"
     },
     {
@@ -404,7 +404,7 @@
         "price": 16.16,
         "discount": 38.92,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Available"
     },
     {
@@ -416,7 +416,7 @@
         "price": 40.31,
         "discount": 43.18,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Available"
     },
     {
@@ -428,7 +428,7 @@
         "price": 62.12,
         "discount": 98.54,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Available"
     },
     {
@@ -440,7 +440,7 @@
         "price": 92.2,
         "discount": 61.78,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Available"
     },
     {
@@ -452,7 +452,7 @@
         "price": 32.46,
         "discount": 92.58,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Available"
     },
     {
@@ -464,7 +464,7 @@
         "price": 1.92,
         "discount": 24.05,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Booked"
     },
     {
@@ -476,7 +476,7 @@
         "price": 92.27,
         "discount": 12.25,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Booked"
     },
     {
@@ -488,7 +488,7 @@
         "price": 95.19,
         "discount": 60.86,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Booked"
     },
     {
@@ -500,7 +500,7 @@
         "price": 5.02,
         "discount": 70.57,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Booked"
     },
     {
@@ -512,7 +512,7 @@
         "price": 80.77,
         "discount": 76.99,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Booked"
     },
     {
@@ -524,7 +524,7 @@
         "price": 76.4,
         "discount": 18.51,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Available"
     },
     {
@@ -536,7 +536,7 @@
         "price": 65.17,
         "discount": 44.44,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Available"
     },
     {
@@ -548,7 +548,7 @@
         "price": 96.08,
         "discount": 90.8,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Booked"
     },
     {
@@ -560,7 +560,7 @@
         "price": 65.51,
         "discount": 68.5,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Booked"
     },
     {
@@ -572,7 +572,7 @@
         "price": 53.1,
         "discount": 90.17,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Booked"
     },
     {
@@ -584,7 +584,7 @@
         "price": 11.77,
         "discount": 29.73,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Available"
     },
     {
@@ -596,7 +596,7 @@
         "price": 75.19,
         "discount": 13.91,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Booked"
     },
     {
@@ -608,7 +608,7 @@
         "price": 25.56,
         "discount": 26.59,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Available"
     },
     {
@@ -620,7 +620,7 @@
         "price": 73.86,
         "discount": 56.93,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Booked"
     },
     {
@@ -632,7 +632,7 @@
         "price": 97.77,
         "discount": 50.34,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Booked"
     },
     {
@@ -644,7 +644,7 @@
         "price": 89.6,
         "discount": 75.79,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Available"
     },
     {
@@ -656,7 +656,7 @@
         "price": 71.89,
         "discount": 32.36,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Booked"
     },
     {
@@ -668,7 +668,7 @@
         "price": 4.66,
         "discount": 24.94,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Available"
     },
     {
@@ -680,7 +680,7 @@
         "price": 14.28,
         "discount": 66.91,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Available"
     },
     {
@@ -692,7 +692,7 @@
         "price": 3.42,
         "discount": 21.62,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Available"
     },
     {
@@ -704,7 +704,7 @@
         "price": 36.9,
         "discount": 65.24,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Available"
     },
     {
@@ -716,7 +716,7 @@
         "price": 40.87,
         "discount": 85.8,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Booked"
     },
     {
@@ -728,7 +728,7 @@
         "price": 64.79,
         "discount": 56.96,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Booked"
     },
     {
@@ -740,7 +740,7 @@
         "price": 58.42,
         "discount": 81.04,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Booked"
     },
     {
@@ -752,7 +752,7 @@
         "price": 70.01,
         "discount": 94.88,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Available"
     },
     {
@@ -764,7 +764,7 @@
         "price": 7.04,
         "discount": 3.67,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Booked"
     },
     {
@@ -776,7 +776,7 @@
         "price": 83.31,
         "discount": 24.67,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Available"
     },
     {
@@ -788,7 +788,7 @@
         "price": 55.13,
         "discount": 26.73,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Available"
     },
     {
@@ -800,7 +800,7 @@
         "price": 70.74,
         "discount": 2.66,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Available"
     },
     {
@@ -812,7 +812,7 @@
         "price": 71.84,
         "discount": 8.61,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Available"
     },
     {
@@ -824,7 +824,7 @@
         "price": 16.93,
         "discount": 90.09,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Booked"
     },
     {
@@ -836,7 +836,7 @@
         "price": 77.49,
         "discount": 17.59,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Booked"
     },
     {
@@ -848,7 +848,7 @@
         "price": 97.16,
         "discount": 37.49,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Booked"
     },
     {
@@ -860,7 +860,7 @@
         "price": 14.0,
         "discount": 84.84,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Available"
     },
     {
@@ -872,7 +872,7 @@
         "price": 61.22,
         "discount": 42.03,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Booked"
     },
     {
@@ -884,7 +884,7 @@
         "price": 44.8,
         "discount": 81.6,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Booked"
     },
     {
@@ -896,7 +896,7 @@
         "price": 23.64,
         "discount": 31.76,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Available"
     },
     {
@@ -908,7 +908,7 @@
         "price": 40.9,
         "discount": 99.67,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Booked"
     },
     {
@@ -920,7 +920,7 @@
         "price": 99.48,
         "discount": 27.54,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Available"
     },
     {
@@ -932,7 +932,7 @@
         "price": 70.65,
         "discount": 63.48,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Available"
     },
     {
@@ -944,7 +944,7 @@
         "price": 18.16,
         "discount": 1.82,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Booked"
     },
     {
@@ -956,7 +956,7 @@
         "price": 98.32,
         "discount": 79.54,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Booked"
     },
     {
@@ -968,7 +968,7 @@
         "price": 69.86,
         "discount": 39.79,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Booked"
     },
     {
@@ -980,7 +980,7 @@
         "price": 47.78,
         "discount": 42.8,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Available"
     },
     {
@@ -992,7 +992,7 @@
         "price": 64.97,
         "discount": 83.55,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Available"
     },
     {
@@ -1004,7 +1004,7 @@
         "price": 25.2,
         "discount": 86.64,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Available"
     },
     {
@@ -1016,7 +1016,7 @@
         "price": 8.02,
         "discount": 14.05,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Available"
     },
     {
@@ -1028,7 +1028,7 @@
         "price": 95.64,
         "discount": 25.7,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Booked"
     },
     {
@@ -1040,7 +1040,7 @@
         "price": 28.09,
         "discount": 65.32,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Booked"
     },
     {
@@ -1052,7 +1052,7 @@
         "price": 29.01,
         "discount": 58.36,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Booked"
     },
     {
@@ -1064,7 +1064,7 @@
         "price": 32.31,
         "discount": 46.35,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Available"
     },
     {
@@ -1076,7 +1076,7 @@
         "price": 12.39,
         "discount": 2.11,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Available"
     },
     {
@@ -1088,7 +1088,7 @@
         "price": 86.47,
         "discount": 74.88,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Booked"
     },
     {
@@ -1100,7 +1100,7 @@
         "price": 12.55,
         "discount": 96.05,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "TV",
+        "amenities": ["TV"],
         "status": "Booked"
     },
     {
@@ -1112,7 +1112,7 @@
         "price": 36.52,
         "discount": 11.66,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Available"
     },
     {
@@ -1124,7 +1124,7 @@
         "price": 59.65,
         "discount": 30.03,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Available"
     },
     {
@@ -1136,7 +1136,7 @@
         "price": 11.5,
         "discount": 90.4,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Booked"
     },
     {
@@ -1148,7 +1148,7 @@
         "price": 71.08,
         "discount": 5.69,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Booked"
     },
     {
@@ -1160,7 +1160,7 @@
         "price": 62.05,
         "discount": 29.9,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Available"
     },
     {
@@ -1172,7 +1172,7 @@
         "price": 16.06,
         "discount": 89.26,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "sea view",
+        "amenities": ["Sea View"],
         "status": "Booked"
     },
     {
@@ -1184,7 +1184,7 @@
         "price": 94.9,
         "discount": 41.9,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "bathtub",
+        "amenities": ["Bathtub"],
         "status": "Available"
     },
     {
@@ -1196,7 +1196,7 @@
         "price": 67.55,
         "discount": 20.91,
         "cancellation_policy": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus at in aperiam facere optio consequuntur velit iste! Asperiores harum quasi perferendis? Corrupti eius officia expedita ipsum ducimus quaerat, delectus fuga? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore rem voluptate fuga, adipisci ullam autem corrupti non porro. Quo sit autem iure provident, ipsum molestias magnam esse magni eaque doloribus?",
-        "amenities": "fridge",
+        "amenities": ["Fridge"],
         "status": "Available"
     }
 ]

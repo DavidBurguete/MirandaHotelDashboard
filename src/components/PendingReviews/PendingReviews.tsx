@@ -6,19 +6,21 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Button } from "../../js/GlobalStyledComponents";
 import * as StyledComponents from "./PendingReviewsStyledComponents";
 import { Card, NavigationButton } from "../../pages/BookingCard/BookingCardStyledComponents";
+import { ContactInterface } from "../../interfaces/ContactInterface";
+import { MessageStatus } from "../../enums/ContactEnum";
 
-function PendingReviews({messages, setMessages}){
+function PendingReviews({messages, setMessages}: {messages: Contact[], setMessages: React.Dispatch<React.SetStateAction<Contact[]>>}){
     const [ firstSlide, setFirstSlide ] = useState(true);
     const [ lastSlide, setLastSlide ] = useState(false);
 
-    const archive = (id) => {
+    const archive = (id: number) => {
         const copy = messages.map(message => {
             return message.message_id === id ? {
                 ...message,
-                status: "archived"
+                status: MessageStatus.Archived
             } :
             message;
-        });
+        }) as Contact[];
         setMessages(copy);
     }
 
@@ -38,16 +40,16 @@ function PendingReviews({messages, setMessages}){
             }}
             style={{"borderTopRightRadius": "1.25rem"}}
         >
-            {messages.filter(message => message.status === "pending").length <= 0 ?
+            {messages.filter(message => message.status === MessageStatus.Pending).length <= 0 ?
                 <StyledComponents.Comment>There are no new messages to display</StyledComponents.Comment> :
-                messages.filter(message => message.status === "pending").map(message => {
-                    return <SwiperSlide key={message.message_id}>
+                messages.filter(message => message.status === MessageStatus.Pending).map(message => {
+                    return <SwiperSlide key={message.message_id as number}>
                         <StyledComponents.Message>
-                            <StyledComponents.CommentHeader>{message.subject}</StyledComponents.CommentHeader>
-                            <StyledComponents.Comment>{message.comment}</StyledComponents.Comment>
+                            <StyledComponents.CommentHeader>{message.subject as string}</StyledComponents.CommentHeader>
+                            <StyledComponents.Comment>{message.comment as string}</StyledComponents.Comment>
                             <StyledComponents.UserArchiveWrapper>
-                                <StyledComponents.User>{message.customer}</StyledComponents.User>
-                                <Button $background="#5AD07A" $color="white" onClick={() => archive(message.message_id)}>Archive</Button>
+                                <StyledComponents.User>{message.customer as string}</StyledComponents.User>
+                                <Button $background="#5AD07A" $color="white" onClick={() => archive(message.message_id as number)}>Archive</Button>
                             </StyledComponents.UserArchiveWrapper>
                         </StyledComponents.Message>
                     </SwiperSlide>;
@@ -55,8 +57,8 @@ function PendingReviews({messages, setMessages}){
             }
 
             <Card>
-                <NavigationButton $notActive={firstSlide} id="swiper-button-prev"><FaArrowLeft/></NavigationButton>
-                <NavigationButton $notActive={lastSlide} id="swiper-button-next"><FaArrowRight/></NavigationButton>
+                <NavigationButton $notActive={firstSlide as boolean} id="swiper-button-prev"><FaArrowLeft/></NavigationButton>
+                <NavigationButton $notActive={lastSlide as boolean} id="swiper-button-next"><FaArrowRight/></NavigationButton>
             </Card>
         </Swiper>
     </StyledComponents.PendingReviews>

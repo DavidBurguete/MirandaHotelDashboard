@@ -61,7 +61,7 @@ const Rooms = () => {
         if(!rooms.loading){
             setRoomsOrdered(rooms.filteredRooms.map((room: Room) => {
                 let floor = "";
-                switch((room.room_id as number - 1) / 25 + 1){
+                switch(Math.floor((room.room_id as number - 1) / 25) + 1){
                     case 1:
                         floor += "1st";
                         break;
@@ -72,7 +72,7 @@ const Rooms = () => {
                         floor += "3rd";
                         break;
                     default:
-                        floor += ((room.room_id as number - 1) / 25 + 1) + "th";
+                        floor += (Math.floor((room.room_id as number - 1) / 25) + 1) + "th";
                         break;
                 }
                 return <StyledComponents.TR key={room.room_id as number} onClick={() => {navigateToRoomEdit(room.room_id as number)}}>
@@ -84,13 +84,13 @@ const Rooms = () => {
                             </StyledComponents.DivText>
                         </StyledComponents.TDMoreContent>
                         <StyledComponents.TD>{room.room_type as enumRoomType}</StyledComponents.TD>
-                        <StyledComponents.TD>{room.amenities as enumAmenities[]}</StyledComponents.TD>
+                        <StyledComponents.TD>{room.amenities.join(",") as string}</StyledComponents.TD>
                         {room.offer as boolean ? 
                             <td>
-                                <StyledComponents.PreviousPriceP>{room.price as number}<span>/Night</span></StyledComponents.PreviousPriceP>
-                                <StyledComponents.PriceP>{room.discount as number}<span>/Night</span></StyledComponents.PriceP>
+                                <StyledComponents.PreviousPriceP>{room.price.toFixed(2) as string}<span>/Night</span></StyledComponents.PreviousPriceP>
+                                <StyledComponents.PriceP>{room.discount.toFixed(2) as string}<span>/Night</span></StyledComponents.PriceP>
                             </td> : 
-                            <StyledComponents.PriceTD>{room.price as number}<span>/Night</span></StyledComponents.PriceTD>
+                            <StyledComponents.PriceTD>{room.price.toFixed(2) as string}<span>/Night</span></StyledComponents.PriceTD>
                         }
                         <td>
                             <Button $background={room.status === enumRoomStatus.Available ? "#5AD07A" : "#E23428"} $color="white">{room.status as enumRoomStatus}</Button>

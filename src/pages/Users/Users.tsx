@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import PageWrapper from "../../components/PageWrapper";
 import { NavLink, useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
@@ -10,8 +10,9 @@ import { Button, TableActionsWrapper } from "../../js/GlobalStyledComponents";
 import Table from "../../components/Table/Table";
 import { useAppDispatch, RootState, useAppSelector } from "../../redux/store";
 import { User } from "../../interfaces/UserInterfaces";
+import { logedUserInterface } from "../../interfaces/loggedUserInterfaces";
 
-function Users({loggedAccount}){
+function Users({loggedAccount}: {loggedAccount: logedUserInterface}){
     const dispatch = useDispatch<useAppDispatch>();
     const navigate = useNavigate();
     const users = useAppSelector((state: RootState) => state.users);

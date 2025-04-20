@@ -14,27 +14,28 @@ import NewBooking from './pages/NewBooking/NewBooking';
 import Users from './pages/Users/Users';
 import CreateAccount from './pages/CreateAccount/CreateAccount';
 import EditAccount from './pages/EditAccount/EditAccount';
+import { actionLoggedInterface, logedUserInterface, userDataInterface } from './interfaces/loggedUserInterfaces';
 
 const userData = [
     {
-        "user": "David Burguete",
-        "email": "dburgueteg@gmail.com",
-        "passwd": "Esparadrapo",
-        "token": "er57rhfw35btrGbtVewffq3FB5h"
+        user: "David Burguete",
+        email: "dburgueteg@gmail.com",
+        passwd: "Esparadrapo",
+        token: "er57rhfw35btrGbtVewffq3FB5h"
     },
     {
-        "user": "admin",
-        "email": "admin@localhost.com",
-        "passwd": "admin",
-        "token": "rtbu56BTSrww4TuKBEc1wevBN5"
+        user: "admin",
+        email: "admin@localhost.com",
+        passwd: "admin",
+        token: "rtbu56BTSrww4TuKBEc1wevBN5"
     },
     {
-        "user": "usuario",
-        "email": "user@example.com",
-        "passwd": "contrasena",
-        "token": "vesHEYjr574h4V42yntKJ543vFcweG674nE"
+        user: "usuario",
+        email: "user@example.com",
+        passwd: "contrasena",
+        token: "vesHEYjr574h4V42yntKJ543vFcweG674nE"
     }
-];
+] as userDataInterface[];
 
 const initialState = {
     logged: false,
@@ -42,9 +43,9 @@ const initialState = {
     email: null,
     token: null,
     error: null
-}
+} as logedUserInterface;
 
-const loginReducer = (state, action) => {
+const loginReducer = (state: logedUserInterface, action: actionLoggedInterface) => {
     if(action.type === "login/login"){
         const loggedUser = userData.find(u => (u.user === action.user || u.email === action.user) && u.passwd === action.passwd);
         return loggedUser !== undefined ? {
@@ -53,13 +54,13 @@ const loginReducer = (state, action) => {
             email: loggedUser.email,
             token: loggedUser.token,
             error: null
-        } : {
+        } as logedUserInterface : {
             logged: false,
             name: null,
             email: null,
             token: null,
             error: "Wrong user or password"
-        }
+        } as logedUserInterface
     }
     else if(action.type === "login/loginWithToken"){
         const loggedUser = userData.find(u => u.token === action.token);
@@ -69,13 +70,13 @@ const loginReducer = (state, action) => {
             email: loggedUser.email,
             token: loggedUser.token,
             error: null
-        } : {
+        } as logedUserInterface : {
             logged: false,
             name: null,
             email: null,
             token: null,
             error: "There was an error on login after refresh"
-        }
+        } as logedUserInterface
     }
     else if(action.type === "login/logout"){
         return {
@@ -84,7 +85,7 @@ const loginReducer = (state, action) => {
             email: null,
             token: null,
             error: null
-        }
+        } as logedUserInterface
     }
     else{
         return state;

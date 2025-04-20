@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import styled from "styled-components";
 
 const PageWrapperSC = styled.main`
@@ -9,7 +10,7 @@ const PageWrapperSC = styled.main`
     background-color: #F8F8F8;
 `;
 
-function PageWrapper({children}){
+function PageWrapper({children}: { children: ReactNode }){
     return <PageWrapperSC>
         {children}
     </PageWrapperSC>

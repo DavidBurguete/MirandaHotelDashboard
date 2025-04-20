@@ -7,9 +7,10 @@ import { IoLogInOutline } from "react-icons/io5";
 import { IoLogOutOutline } from "react-icons/io5";
 import * as StyledComponents from "./DashboardStyledComponents";
 import PageWrapper from "../../components/PageWrapper";
+import { ContactInterface } from "../../interfaces/ContactInterface";
 
 function Dashboard(){
-    const [ messages, setMessages ] = useState(null);
+    const [ messages, setMessages ] = useState<ContactInterface[]>([]);
 
     useEffect(() => {
         fetch("/json/Contact.json", { mode: "cors" })
@@ -20,7 +21,7 @@ function Dashboard(){
             .catch((error) => console.error(error));
     }, []);
 
-    return messages === null ? 
+    return messages.length === 0 ? 
         <Loading/> :
         <PageWrapper>
             <StyledComponents.KPIs>

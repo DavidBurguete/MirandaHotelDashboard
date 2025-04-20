@@ -2,14 +2,15 @@ import { HiMenuAlt2 } from "react-icons/hi";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as StyledComponents from "./HeaderStyledComponents";
+import { actionLoggedInterface } from "../../interfaces/loggedUserInterfaces";
 
-function Header({Toggler, loggedAccountDispatch}){
+function Header({Toggler, loggedAccountDispatch}: {Toggler: () =>  void, loggedAccountDispatch: React.ActionDispatch<[action: actionLoggedInterface]>}){
     const location = useLocation();
     const [ innerText, setInnerText ] = useState("Dashboard");
     const navigate = useNavigate();
 
     useEffect(() => {
-        switch(location.pathname){
+        switch(location.pathname as string){
             case "/dashboard":
                 setInnerText("Dashboard");
                 break;
@@ -32,7 +33,7 @@ function Header({Toggler, loggedAccountDispatch}){
     }, [location]);
 
     const handleLogOut = () => {
-        loggedAccountDispatch({type: "login/logout"});
+        loggedAccountDispatch({type: "login/logout"} as actionLoggedInterface);
         localStorage.removeItem("token");
         navigate("/login");
     }
@@ -42,7 +43,7 @@ function Header({Toggler, loggedAccountDispatch}){
             <StyledComponents.ToggleLateralMenu onClick={Toggler}>
                 <HiMenuAlt2/>
             </StyledComponents.ToggleLateralMenu>
-            <StyledComponents.H2>{innerText}</StyledComponents.H2>
+            <StyledComponents.H2>{innerText as string}</StyledComponents.H2>
         </StyledComponents.Title>
         <StyledComponents.TopMenu>
             <StyledComponents.Mail/>

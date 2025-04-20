@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Select, { MultiValue, SingleValue } from "react-select";
+import Select, { SingleValue } from "react-select";
 import { useNavigate } from "react-router-dom";
 import * as FormStyled from "../../js/FormStyledComponents";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,7 +44,7 @@ function NewBooking(){
         if(!rooms.loading){
             setRoomsAvailable(rooms.rooms.filter(room => room.status === "Available").map(room => {
                 let floor = "";
-                switch((room.room_id - 1) / 25 + 1){
+                switch(Math.floor((room.room_id - 1) / 25) + 1){
                     case 1:
                         floor += "1st";
                         break;
@@ -55,7 +55,7 @@ function NewBooking(){
                         floor += "3rd";
                         break;
                     default:
-                        floor += ((room.room_id - 1) / 25) + 1 + "th";
+                        floor += Math.floor((room.room_id - 1) / 25) + 1 + "th";
                         break;
                 }
                 return {value: room.room_id, label: `${floor} Floor, Room ${(room.room_id - 1) % 25 + 1}`};

@@ -8,13 +8,12 @@ import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 import 'swiper/css/bundle';
 import PageWrapper from "../../components/PageWrapper";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchBookings } from "../Bookings/BookingsSlice";
 import { fetchRooms } from "../Rooms/RoomsSlice";
 import { RootState, useAppDispatch, useAppSelector } from "../../redux/store";
 import { Booking } from "../../interfaces/BookingInterfaces";
 import { Room } from "../../interfaces/RoomInterfaces";
-import { BookingStatus } from "../../enums/BookingEnum";
 import { enumAmenities, enumRoomStatus, enumRoomType } from "../../enums/RoomEnum";
 
 const fullMonth = (month: string) => {
@@ -164,7 +163,7 @@ function BookingCard(){
                             <StyledComponents.TextMain>${room.price as number} <span>/Night</span></StyledComponents.TextMain>
                         </div>
                     </StyledComponents.SameLineDataWrapper>
-                    <StyledComponents.Description>{bookedCard.special_request as string}</StyledComponents.Description>
+                    <StyledComponents.Description>{bookedCard.special_request as string !== "" ? bookedCard.special_request as string : <i>The client does not have any special request</i>}</StyledComponents.Description>
                     <div>
                         <StyledComponents.TextHeader>Amenities</StyledComponents.TextHeader>
                         {room.amenities.map((amenity: enumAmenities) => {

@@ -1,7 +1,8 @@
 import * as StyledComponents from "./LateralMenuStyledComponents";
 import { Button } from "../../js/GlobalStyledComponents";
+import { logedUserInterface } from "../../interfaces/loggedUserInterfaces";
 
-function LateralMenu({isToggled, loggedAccount}){
+function LateralMenu({isToggled, loggedAccount}: {isToggled: boolean, loggedAccount: logedUserInterface}){
     return <StyledComponents.Lateral id="lateral-menu" $toggled={isToggled}>
         <StyledComponents.LogoContainer>
             <StyledComponents.LogoImg src="/img/hotel.svg" alt="logo" />
@@ -33,8 +34,8 @@ function LateralMenu({isToggled, loggedAccount}){
         <StyledComponents.UserCard>
             <StyledComponents.OffSet>
                 <StyledComponents.UserImg src="/img/david.jpeg" alt="user profile image"/>
-                <StyledComponents.UserName>{loggedAccount.name}</StyledComponents.UserName>
-                <StyledComponents.UserMail>{loggedAccount.email}</StyledComponents.UserMail>
+                <StyledComponents.UserName>{loggedAccount.name as string}</StyledComponents.UserName>
+                <StyledComponents.UserMail>{loggedAccount.email as string}</StyledComponents.UserMail>
                 <Button $background="#EBF1EF" $color="#135846">Contact Us</Button>
             </StyledComponents.OffSet>
         </StyledComponents.UserCard>

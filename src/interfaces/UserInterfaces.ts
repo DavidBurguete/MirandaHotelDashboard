@@ -2,7 +2,8 @@ export interface User {
     id: number;
     user: string;
     email: string;
-    password: string;
+    passwd: string;
+    token: string;
 }
 
 export interface UserState {

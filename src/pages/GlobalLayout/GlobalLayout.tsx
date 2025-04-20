@@ -3,9 +3,10 @@ import LateralMenu from '../../components/LateralMenu/LateralMenu';
 import Header from '../../components/Header/Header'
 import { PageWrapper } from '../../js/GlobalStyledComponents';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { actionLoggedInterface, logedUserInterface } from '../../interfaces/loggedUserInterfaces';
 
-function GlobalLayout({loggedAccount, loggedAccountDispatch}){
-    const [toggle, setToggle] = useState(true);
+function GlobalLayout({loggedAccount, loggedAccountDispatch}: {loggedAccount: logedUserInterface, loggedAccountDispatch: React.ActionDispatch<[action: actionLoggedInterface]>}){
+    const [toggle, setToggle] = useState<boolean>(true);
     const navigate = useNavigate();
 
     const Toggler = () => {
@@ -14,7 +15,7 @@ function GlobalLayout({loggedAccount, loggedAccountDispatch}){
 
     useEffect(() => {
         if (loggedAccount.logged) {
-            localStorage.setItem("token", loggedAccount.token);
+            localStorage.setItem("token", loggedAccount.token as string);
         }
         else{
             navigate("/login");

@@ -8,6 +8,7 @@ export const Card = styled.div`
 `;
 
 export const CardTextWrapper = styled.div`
+    width: 100%;
     padding: 2rem;
     border-top-left-radius: 1.25rem;
     border-bottom-left-radius: 1.25rem;
