@@ -6,20 +6,21 @@ import { useDispatch } from "react-redux";
 import { createRoom, fetchRooms } from "../Rooms/RoomsSlice";
 import PageWrapper from "../../components/PageWrapper";
 import Loading from "../../components/Loading";
-import { Room, RoomState } from "../../interfaces/RoomInterfaces";
+import { Room, RoomState, AmenitiesOptions, RoomTypeOptions, RoomStatusOptions } from "../../interfaces/RoomInterfaces";
 import { useAppDispatch, RootState, useAppSelector } from "../../redux/store";
 import { enumAmenities, enumRoomStatus, enumRoomType } from "../../enums/RoomEnum";
-import { AmenitiesOptions, RoomTypeOptions } from "../../interfaces/NewRoomInterfaces";
 
 function NewRoom(){
     const dispatch = useDispatch<useAppDispatch>();
     const rooms: RoomState = useAppSelector((state: RootState) => state.rooms);
+    const [roomName, setRoomName] = useState<string>("");
     const [selectedRoomType, setSelectedRoomType] = useState<SingleValue<RoomTypeOptions>>();
     const [description, setDescription] = useState<string>("");
     const [price, setPrice] = useState<number>(0);
     const [hasOffer, setHasOffer] = useState<boolean>(false);
     const [discount, setDiscount] = useState<number>(0);
     const [selectedAmenities, setSelectedAmenities] = useState<MultiValue<AmenitiesOptions>>();
+    const [selectedStatusType, setSelectedStatusType] = useState<SingleValue<RoomStatusOptions>>();
     const navigate = useNavigate();
     
     useEffect(() => {
@@ -27,6 +28,11 @@ function NewRoom(){
             dispatch(fetchRooms());
         }
     }, []);
+
+    const handleRoomName = (roomName: React.ChangeEvent) => {
+        const HTMLInputElement = roomName.target as HTMLInputElement;
+        setRoomName(HTMLInputElement.value);
+    }
 
     const handleRoomTypeChange = (selectedOptions: SingleValue<RoomTypeOptions>) => {
         setSelectedRoomType(selectedOptions);
@@ -65,6 +71,10 @@ function NewRoom(){
     const handleAmenitiesChange = (selectedOptions: MultiValue<AmenitiesOptions>) => {
         setSelectedAmenities(selectedOptions);
     };
+
+    const handleRoomStatusChange = (selectedOptions: SingleValue<RoomStatusOptions>) => {
+        setSelectedStatusType(selectedOptions);
+    };
     
     const amenititesOptions = [
         { value: enumAmenities.TV, label: 'TV' },
@@ -80,6 +90,11 @@ function NewRoom(){
         { value: enumRoomType.DoubleSuperior, label: 'Double Superior' },
         { value: enumRoomType.Suite, label: 'Suite' }
     ] as RoomTypeOptions[];
+    
+    const roomStatusOptions = [
+        { value: 'Available', label: 'Available' },
+        { value: 'Booked', label: 'Booked' }
+    ] as RoomStatusOptions[];
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -92,7 +107,7 @@ function NewRoom(){
                 return amenitie.value;
             });
             const newRoom = {
-                "room_id": rooms.rooms.length + 1,
+                "room_name": roomName,
                 "room_type": (selectedRoomType as RoomTypeOptions).value,
                 "description": description,
                 "photos":  "/img/hotel-room-1.jpg__/img/hotel-room-2.jpg__/img/hotel-room-3.jpg__/img/hotel-room-4.jpg",
@@ -133,6 +148,10 @@ function NewRoom(){
                     }}
                 />
             </FormStyled.Label>
+            <FormStyled.Label htmlFor="roomName">
+                Room name
+                <FormStyled.Input type="text" name="roomName" id="roomName" placeholder="Enter the room name" onChange={handleRoomName} value={roomName}/>
+            </FormStyled.Label>
             <FormStyled.Label htmlFor="description">
                 Description
                 <FormStyled.Input type="text" name="description" id="description" placeholder="Enter description" onChange={handleDescription} value={description}/>
@@ -156,6 +175,27 @@ function NewRoom(){
                     value={selectedAmenities}
                     onChange={handleAmenitiesChange}
                     options={amenititesOptions}
+                    styles={{
+                        control: (baseStyles, _) => ({
+                            ...baseStyles,
+                            marginTop: "0.5rem",
+                            padding: "0.5rem",
+                            borderRadius: "0.5rem",
+                            fontFamily: "Poppins",
+                            fontWeight: 600,
+                            fontSize: "1rem",
+                            color: "#393939"
+                        })
+                    }}
+                />
+            </FormStyled.Label>
+            <FormStyled.Label htmlFor="status">
+                Status
+                <Select
+                    id="status"
+                    value={selectedStatusType}
+                    onChange={handleRoomStatusChange}
+                    options={roomStatusOptions}
                     styles={{
                         control: (baseStyles, _) => ({
                             ...baseStyles,

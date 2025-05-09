@@ -6,21 +6,22 @@ import { useDispatch } from "react-redux";
 import { fetchRooms, updateRoom } from "../Rooms/RoomsSlice";
 import PageWrapper from "../../components/PageWrapper";
 import { RootState, useAppDispatch, useAppSelector } from "../../redux/store";
-import { AmenitiesOptions, RoomTypeOptions } from "../../interfaces/NewRoomInterfaces";
-import { Room } from "../../interfaces/RoomInterfaces";
+import { Room, AmenitiesOptions, RoomTypeOptions, RoomStatusOptions } from "../../interfaces/RoomInterfaces";
 import { enumRoomStatus } from "../../enums/RoomEnum";
 
 function EditRoom(){
     const dispatch = useDispatch<useAppDispatch>();
     const { id } = useParams();
     const rooms = useAppSelector((state: RootState) => state.rooms);
-    const room = useAppSelector((state: RootState) => state.rooms.rooms[parseInt(id as string) - 1]);
+    const [ room, setRoom ] = useState<Room>();
     const [selectedRoomType, setSelectedRoomType] = useState<SingleValue<RoomTypeOptions>>();
+    const [roomName, setRoomName] = useState<string>("");
     const [description, setDescription] = useState<string>("");
     const [price, setPrice] = useState<number>(0);
     const [hasOffer, setHasOffer] = useState<boolean>(false);
     const [discount, setDiscount] = useState<number>(0);
     const [selectedAmenities, setSelectedAmenities] = useState<MultiValue<AmenitiesOptions>>([]);
+    const [selectedStatusType, setSelectedStatusType] = useState<SingleValue<RoomStatusOptions>>();
     const navigate = useNavigate();
     
     const amenititesOptions = [
@@ -38,6 +39,11 @@ function EditRoom(){
         { value: 'Suite', label: 'Suite' }
     ] as RoomTypeOptions[];
 
+    const roomStatusOptions = [
+        { value: 'Available', label: 'Available' },
+        { value: 'Booked', label: 'Booked' }
+    ] as RoomStatusOptions[];
+
     useEffect(() => {
         if(rooms.loading as boolean){
             dispatch(fetchRooms());
@@ -45,10 +51,17 @@ function EditRoom(){
     }, []);
 
     useEffect(() => {
+        if(!rooms.loading){
+            setRoom(rooms.rooms.find(room => room._id === (id as string)));
+        }
+    }, [rooms]);
+
+    useEffect(() => {
         if(room !== undefined){
-            setSelectedRoomType(roomTypeOptions.filter(type => 
-                room.room_type.toLowerCase().split(",").includes(type.value.toLowerCase())
-            )[0]);
+            setSelectedRoomType(roomTypeOptions.find(type => 
+                room.room_type.toLowerCase().includes(type.value.toLowerCase())
+            ));
+            setRoomName(room.room_name);
             setDescription(room.description);
             setPrice(room.price);
             setHasOffer(room.offer);
@@ -56,12 +69,20 @@ function EditRoom(){
             setSelectedAmenities(amenititesOptions.filter(amenity => {
                 return room.amenities.includes(amenity.value);
             }));
+            setSelectedStatusType(roomStatusOptions.find(type => 
+                room.status.toLowerCase().includes(type.value.toLowerCase())
+            ));
         }
     }, [room]);
 
     const handleRoomTypeChange = (selectedOptions: SingleValue<RoomTypeOptions>) => {
         setSelectedRoomType(selectedOptions);
     };
+
+    const handleRoomName = (roomName: React.ChangeEvent) => {
+        const HTMLInputElement = roomName.target as HTMLInputElement;
+        setRoomName(HTMLInputElement.value);
+    }
 
     const handleDescription = (description: React.ChangeEvent) => {
         const HTMLInputElement = description.target as HTMLInputElement;
@@ -97,6 +118,10 @@ function EditRoom(){
         setSelectedAmenities(selectedOptions);
     };
 
+    const handleRoomStatusChange = (selectedOptions: SingleValue<RoomStatusOptions>) => {
+        setSelectedStatusType(selectedOptions);
+    };
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const notFullfilledData = selectedAmenities.length === 0 || 
@@ -108,7 +133,8 @@ function EditRoom(){
                 return amenitie.value;
             });
             const updatedRoom = {
-                "room_id": room.room_id,
+                "_id": id,
+                "room_name": roomName,
                 "room_type": (selectedRoomType as RoomTypeOptions).value,
                 "description": description,
                 "photos":  "/img/hotel-room-1.jpg__/img/hotel-room-2.jpg__/img/hotel-room-3.jpg__/img/hotel-room-4.jpg",
@@ -147,6 +173,10 @@ function EditRoom(){
                     }}
                 />
             </FormStyled.Label>
+            <FormStyled.Label htmlFor="roomName">
+                Room name
+                <FormStyled.Input type="text" name="roomName" id="roomName" placeholder="Enter the room name" onChange={handleRoomName} value={roomName}/>
+            </FormStyled.Label>
             <FormStyled.Label htmlFor="description">
                 Description
                 <FormStyled.Input type="text" name="description" id="description" placeholder="Enter description" onChange={handleDescription} value={description}/>
@@ -170,6 +200,27 @@ function EditRoom(){
                     value={selectedAmenities}
                     onChange={handleAmenitiesChange}
                     options={amenititesOptions}
+                    styles={{
+                        control: (baseStyles, _) => ({
+                            ...baseStyles,
+                            marginTop: "0.5rem",
+                            padding: "0.5rem",
+                            borderRadius: "0.5rem",
+                            fontFamily: "Poppins",
+                            fontWeight: 600,
+                            fontSize: "1rem",
+                            color: "#393939"
+                        })
+                    }}
+                />
+            </FormStyled.Label>
+            <FormStyled.Label htmlFor="status">
+                Status
+                <Select
+                    id="status"
+                    value={selectedStatusType}
+                    onChange={handleRoomStatusChange}
+                    options={roomStatusOptions}
                     styles={{
                         control: (baseStyles, _) => ({
                             ...baseStyles,

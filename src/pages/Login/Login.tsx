@@ -23,9 +23,30 @@ function Login({loggedAccount, loggedAccountDispatch}: {loggedAccount: logedUser
         }
     }, [loggedAccount]);
 
-    const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        loggedAccountDispatch({type: "login/login", user: username, passwd: passwd} as actionLoggedInterface);
+        try{
+            const response = await fetch(`${import.meta.env.VITE_API_URL as string}/login`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: passwd
+                })
+            });
+
+            if(!response.ok){
+                const error = await response.json();
+                throw new Error(error.message);
+            }
+            const loggedUser = await response.json();
+            loggedAccountDispatch({type: "login/login", user: loggedUser.user.user, email: loggedUser.user.email, token: loggedUser.token} as actionLoggedInterface);
+        }
+        catch(error){
+            loggedAccountDispatch({type: "login/loginFailed", error: error as Error} as actionLoggedInterface);
+        }
     }
 
     const handleUsername = (username: React.ChangeEvent) => {

@@ -7,10 +7,16 @@ export const fetchRooms = createAsyncThunk<Room[]>("rooms/fetchRooms", async() =
     return new Promise<Room[]>((resolve, reject) => {
         setTimeout(async() => {
             try{
-                const response = await fetch("/json/Rooms.json");
+                const response = await fetch(`${import.meta.env.VITE_API_URL as string}/rooms`, {
+                    method: "GET",
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem("token")}`
+                    }
+                });
 
                 if(!response.ok){
-                    throw new Error("An error occurred");
+                    const error = await response.json();
+                    throw new Error(error.message);
                 }
 
                 const rooms: Room[] = await response.json();
@@ -42,31 +48,100 @@ export const filterRooms = createAsyncThunk<Room[], string>("rooms/filterRooms",
 });
 
 export const createRoom = createAsyncThunk<Room[], Room>("rooms/createRoom", async (newRoom: Room, thunkAPI) => {
-    const state = thunkAPI.getState() as RootState;
-    const { rooms } = state.rooms;
-    const createdRoom = [...rooms, newRoom];
-    return createdRoom;
+    return new Promise<Room[]>(async (resolve, reject) => {
+        try{
+            const response = await fetch(`${import.meta.env.VITE_API_URL as string}/rooms/new`, {
+                method: "POST",
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    newRoom
+                })
+            });
+
+            if(!response.ok){
+                const error = await response.json();
+                throw new Error(error.message);
+            }
+
+            const rooms: Room = await response.json();
+        }
+        catch(error){
+            reject(error);
+        }
+        const state = thunkAPI.getState() as RootState;
+        const { rooms } = state.rooms;
+        const createdRoom = [...rooms, newRoom];
+        resolve(createdRoom);
+    });
 });
 
 export const updateRoom = createAsyncThunk<Room[], Room>("rooms/updateRoom", async (updatedRoom: Room, thunkAPI) => {
-    const state = thunkAPI.getState() as RootState;
-    const { rooms } = state.rooms;
-    const updatedRooms = rooms.map((room: Room) => {
-        if(room.room_id !== updatedRoom.room_id){
-            return room;
+    return new Promise<Room[]>(async (resolve, reject) => {
+        try{
+            const response = await fetch(`${import.meta.env.VITE_API_URL as string}/rooms/${updatedRoom._id}`, {
+                method: "PUT",
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    updatedRoom
+                })
+            });
+
+            if(!response.ok){
+                const error = await response.json();
+                throw new Error(error.message);
+            }
+
+            const rooms: Room = await response.json();
         }
-        else{
-            return updatedRoom;
+        catch(error){
+            reject(error);
         }
+        const state = thunkAPI.getState() as RootState;
+        const { rooms } = state.rooms;
+        const updatedRooms = rooms.map((room: Room) => {
+            if(room._id !== updatedRoom._id){
+                return room;
+            }
+            else{
+                return updatedRoom;
+            }
+        });
+        resolve(updatedRooms);
     });
-    return updatedRooms;
 });
 
-export const deleteRoom = createAsyncThunk<Room[], number>("rooms/deleteRoom", async (room_id: number, thunkAPI) => {
-    const state = thunkAPI.getState() as RootState;
-    const { rooms } = state.rooms;
-    const deletedRoom = rooms.filter((room: Room) => room.room_id !== room_id);
-    return deletedRoom;
+export const deleteRoom = createAsyncThunk<Room[], string>("rooms/deleteRoom", async (room_id: string, thunkAPI) => {
+    return new Promise<Room[]>(async (resolve, reject) => {
+        try{
+            const response = await fetch(`${import.meta.env.VITE_API_URL as string}/rooms/${room_id}`, {
+                method: "DELETE",
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if(!response.ok){
+                const error = await response.json();
+                throw new Error(error.message);
+            }
+
+            const rooms: Room = await response.json();
+        }
+        catch(error){
+            reject(error);
+        }
+        const state = thunkAPI.getState() as RootState;
+        const { rooms } = state.rooms;
+        const deletedRoom = rooms.filter((room: Room) => room._id !== room_id);
+        resolve(deletedRoom);
+    });
 });
 
 const roomsSlice = createSlice({

@@ -47,20 +47,22 @@ const initialState = {
 
 const loginReducer = (state: logedUserInterface, action: actionLoggedInterface) => {
     if(action.type === "login/login"){
-        const loggedUser = userData.find(u => (u.user === action.user || u.email === action.user) && u.passwd === action.passwd);
-        return loggedUser !== undefined ? {
+        return {
             logged: true,
-            name: loggedUser.user,
-            email: loggedUser.email,
-            token: loggedUser.token,
+            name: action.user,
+            email: action.email,
+            token: action.token,
             error: null
-        } as logedUserInterface : {
+        } as logedUserInterface;
+    }
+    else if(action.type === "login/loginFailed"){
+        return {
             logged: false,
             name: null,
             email: null,
             token: null,
-            error: "Wrong user or password"
-        } as logedUserInterface
+            error: action.error.message
+        } as logedUserInterface;
     }
     else if(action.type === "login/loginWithToken"){
         const loggedUser = userData.find(u => u.token === action.token);

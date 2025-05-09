@@ -48,11 +48,11 @@ const Rooms = () => {
         }
     }
 
-    const navigateToRoomEdit = (room_id: number) => {
+    const navigateToRoomEdit = (room_id: string) => {
         navigate(`/rooms/${room_id}`);
     }
 
-    const handleDeleteRoom = (event: React.MouseEvent, room_id: number) => {
+    const handleDeleteRoom = (event: React.MouseEvent, room_id: string) => {
         event.stopPropagation();
         dispatch(deleteRoom(room_id));
     }
@@ -60,27 +60,12 @@ const Rooms = () => {
     useEffect(() => {
         if(!rooms.loading){
             setRoomsOrdered(rooms.filteredRooms.map((room: Room) => {
-                let floor = "";
-                switch(Math.floor((room.room_id as number - 1) / 25) + 1){
-                    case 1:
-                        floor += "1st";
-                        break;
-                    case 2:
-                        floor += "2nd";
-                        break;
-                    case 3:
-                        floor += "3rd";
-                        break;
-                    default:
-                        floor += (Math.floor((room.room_id as number - 1) / 25) + 1) + "th";
-                        break;
-                }
-                return <StyledComponents.TR key={room.room_id as number} onClick={() => {navigateToRoomEdit(room.room_id as number)}}>
+                return <StyledComponents.TR key={room._id as string} onClick={() => {navigateToRoomEdit(room._id as string)}}>
                         <StyledComponents.TDMoreContent>
                             <StyledComponents.TableImg src={room.photos.split("__")[0] as string} alt="hotel room image"/>
                             <StyledComponents.DivText>
-                                <StyledComponents.ID>#{room.room_id as number}</StyledComponents.ID>
-                                <p>{floor as string} Floor, Room {(room.room_id as number - 1) % 25 + 1}</p>
+                                <StyledComponents.ID>#{room._id as string}</StyledComponents.ID>
+                                <p>{room.room_name}</p>
                             </StyledComponents.DivText>
                         </StyledComponents.TDMoreContent>
                         <StyledComponents.TD>{room.room_type as enumRoomType}</StyledComponents.TD>
@@ -94,7 +79,7 @@ const Rooms = () => {
                         }
                         <td>
                             <Button $background={room.status === enumRoomStatus.Available ? "#5AD07A" : "#E23428"} $color="white">{room.status as enumRoomStatus}</Button>
-                            <StyledComponents.CrossCircled onClick={(event: React.MouseEvent) => {handleDeleteRoom(event as React.MouseEvent, room.room_id as number)}}/>
+                            <StyledComponents.CrossCircled onClick={(event: React.MouseEvent) => {handleDeleteRoom(event as React.MouseEvent, room._id as string)}}/>
                         </td>
                     </StyledComponents.TR>;
                 })

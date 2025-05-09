@@ -16,6 +16,7 @@ export interface logedUserInterface {
 export interface actionLoggedInterface {
     type: string;
     user: string;
-    passwd: string;
+    email: string;
     token: string;
+    error: Error;
 }

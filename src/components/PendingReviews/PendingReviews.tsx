@@ -9,7 +9,7 @@ import { Card, NavigationButton } from "../../pages/BookingCard/BookingCardStyle
 import { ContactInterface } from "../../interfaces/ContactInterface";
 import { MessageStatus } from "../../enums/ContactEnum";
 
-function PendingReviews({messages, setMessages}: {messages: Contact[], setMessages: React.Dispatch<React.SetStateAction<Contact[]>>}){
+function PendingReviews({messages, setMessages}: {messages: ContactInterface[], setMessages: React.Dispatch<React.SetStateAction<ContactInterface[]>>}){
     const [ firstSlide, setFirstSlide ] = useState(true);
     const [ lastSlide, setLastSlide ] = useState(false);
 
@@ -20,7 +20,7 @@ function PendingReviews({messages, setMessages}: {messages: Contact[], setMessag
                 status: MessageStatus.Archived
             } :
             message;
-        }) as Contact[];
+        }) as ContactInterface[];
         setMessages(copy);
     }
 
