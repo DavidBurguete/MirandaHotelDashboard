@@ -20,3 +20,8 @@ export interface actionLoggedInterface {
     token: string;
     error: Error;
 }
+
+export interface loggedAccountContextInterface {
+    loggedAccount: logedUserInterface;
+    loggedAccountDispatch: React.Dispatch<actionLoggedInterface>;
+}

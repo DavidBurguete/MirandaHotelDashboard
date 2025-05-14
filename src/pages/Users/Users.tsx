@@ -10,12 +10,15 @@ import { Button, TableActionsWrapper } from "../../js/GlobalStyledComponents";
 import Table from "../../components/Table/Table";
 import { useAppDispatch, RootState, useAppSelector } from "../../redux/store";
 import { User } from "../../interfaces/UserInterfaces";
-import { logedUserInterface } from "../../interfaces/loggedUserInterfaces";
+import { loggedAccountContextInterface } from "../../interfaces/loggedUserInterfaces";
+import { useLoggedAccount } from "../Login/LoggedAccountContext";
 
-function Users({loggedAccount}: {loggedAccount: logedUserInterface}){
+function Users(){
     const dispatch = useDispatch<useAppDispatch>();
     const navigate = useNavigate();
     const users = useAppSelector((state: RootState) => state.users);
+    
+    const { loggedAccount } = useLoggedAccount() as loggedAccountContextInterface;
         
     useEffect(() => {
         if(users.loading as boolean){
@@ -23,13 +26,13 @@ function Users({loggedAccount}: {loggedAccount: logedUserInterface}){
         }
     }, []);
     
-    const handleDeleteUser = (event: React.MouseEvent, user_id: number) => {
+    const handleDeleteUser = (event: React.MouseEvent, user_id: string) => {
         event.stopPropagation();
         dispatch(deleteUser(user_id));
     }
 
-    const navigateToUserEdit = (user_id: number) => {
-        if(loggedAccount.token as string === "rtbu56BTSrww4TuKBEc1wevBN5"){
+    const navigateToUserEdit = (user_id: string) => {
+        if(loggedAccount.name as string === "admin"){
             navigate(`/users/${user_id}`);
         }
     }
@@ -37,21 +40,21 @@ function Users({loggedAccount}: {loggedAccount: logedUserInterface}){
     return users.loading ?
         <Loading/> : 
         <PageWrapper>
-            {loggedAccount.token as string === "rtbu56BTSrww4TuKBEc1wevBN5" && <TableActionsWrapper>
+            {loggedAccount.name as string === "admin" && <TableActionsWrapper>
                 <NavLink to="/users/new">
                     <Button $background="#135846" $color="white">+ New User</Button>
                 </NavLink>
             </TableActionsWrapper>} 
             <Table headers={users.tableHeaders as string[]} action={undefined}>{users.users.map((user: User) => {
-                return <StyledComponents.TR key={user.id as number} onClick={() => {navigateToUserEdit(user.id as number)}}>
+                return <StyledComponents.TR key={user._id as string} onClick={() => {navigateToUserEdit(user._id as string)}}>
                     <StyledComponents.TDMoreContent>
                         <p>{user.user as string}</p>
-                        <StyledComponents.ID>ID #{user.id as number}</StyledComponents.ID>
+                        <StyledComponents.ID>ID #{user._id as string}</StyledComponents.ID>
                     </StyledComponents.TDMoreContent>
                     <StyledComponents.TD>{user.email as string}</StyledComponents.TD>
                     <StyledComponents.TD>*********</StyledComponents.TD>
-                    {loggedAccount.token as string === "rtbu56BTSrww4TuKBEc1wevBN5" && <td>
-                        <StyledComponents.CrossCircled onClick={(event: React.MouseEvent) => {handleDeleteUser(event, user.id as number)}}/>
+                    {loggedAccount.name as string === "admin" && <td>
+                        <StyledComponents.CrossCircled onClick={(event: React.MouseEvent) => {handleDeleteUser(event, user._id as string)}}/>
                     </td>}
                 </StyledComponents.TR>;
             })}</Table>

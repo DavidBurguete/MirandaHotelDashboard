@@ -9,115 +9,37 @@ import EditRoom from './pages/EditRoom/EditRoom';
 import GlobalLayout from './pages/GlobalLayout/GlobalLayout';
 import Login from './pages/Login/Login';
 import './styles.css';
-import { useReducer } from 'react';
 import NewBooking from './pages/NewBooking/NewBooking';
 import Users from './pages/Users/Users';
 import CreateAccount from './pages/CreateAccount/CreateAccount';
 import EditAccount from './pages/EditAccount/EditAccount';
-import { actionLoggedInterface, logedUserInterface, userDataInterface } from './interfaces/loggedUserInterfaces';
-
-const userData = [
-    {
-        user: "David Burguete",
-        email: "dburgueteg@gmail.com",
-        passwd: "Esparadrapo",
-        token: "er57rhfw35btrGbtVewffq3FB5h"
-    },
-    {
-        user: "admin",
-        email: "admin@localhost.com",
-        passwd: "admin",
-        token: "rtbu56BTSrww4TuKBEc1wevBN5"
-    },
-    {
-        user: "usuario",
-        email: "user@example.com",
-        passwd: "contrasena",
-        token: "vesHEYjr574h4V42yntKJ543vFcweG674nE"
-    }
-] as userDataInterface[];
-
-const initialState = {
-    logged: false,
-    name: null,
-    email: null,
-    token: null,
-    error: null
-} as logedUserInterface;
-
-const loginReducer = (state: logedUserInterface, action: actionLoggedInterface) => {
-    if(action.type === "login/login"){
-        return {
-            logged: true,
-            name: action.user,
-            email: action.email,
-            token: action.token,
-            error: null
-        } as logedUserInterface;
-    }
-    else if(action.type === "login/loginFailed"){
-        return {
-            logged: false,
-            name: null,
-            email: null,
-            token: null,
-            error: action.error.message
-        } as logedUserInterface;
-    }
-    else if(action.type === "login/loginWithToken"){
-        const loggedUser = userData.find(u => u.token === action.token);
-        return loggedUser !== undefined ? {
-            logged: true,
-            name: loggedUser.user,
-            email: loggedUser.email,
-            token: loggedUser.token,
-            error: null
-        } as logedUserInterface : {
-            logged: false,
-            name: null,
-            email: null,
-            token: null,
-            error: "There was an error on login after refresh"
-        } as logedUserInterface
-    }
-    else if(action.type === "login/logout"){
-        return {
-            logged: false,
-            name: null,
-            email: null,
-            token: null,
-            error: null
-        } as logedUserInterface
-    }
-    else{
-        return state;
-    }
-}
+import { LoggedAccountProvider } from './pages/Login/LoggedAccountContext';
 
 function App() {
-    const [ loggedAccount, loggedAccountDispatch ] = useReducer(loginReducer, initialState);
 
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/login" element={<Login loggedAccount={loggedAccount} loggedAccountDispatch={loggedAccountDispatch}/>}/>
-                <Route path="/" element={<GlobalLayout loggedAccount={loggedAccount} loggedAccountDispatch={loggedAccountDispatch}/>}>
-                    <Route index element={<Navigate to="/dashboard"/>} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/rooms" element={<Rooms />} />
-                    <Route path="/rooms/new" element={<NewRoom />} />
-                    <Route path="/rooms/:id" element={<EditRoom />} />
-                    <Route path="/bookings" element={<Bookings />} />
-                    <Route path="/bookings/new" element={<NewBooking />} />
-                    <Route path="/bookings/:id" element={<BookingCard />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/users" element={<Users loggedAccount={loggedAccount}/>} />
-                    <Route path="/users/new" element={<CreateAccount/>} />
-                    <Route path="/users/:id" element={<EditAccount/>} />
-                    <Route path="*" element={<></>} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
+        <LoggedAccountProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/login" element={<Login />}/>
+                    <Route path="/" element={<GlobalLayout />}>
+                        <Route index element={<Navigate to="/dashboard"/>} />
+                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/rooms" element={<Rooms />} />
+                        <Route path="/rooms/new" element={<NewRoom />} />
+                        <Route path="/rooms/:id" element={<EditRoom />} />
+                        <Route path="/bookings" element={<Bookings />} />
+                        <Route path="/bookings/new" element={<NewBooking />} />
+                        <Route path="/bookings/:id" element={<BookingCard />} />
+                        <Route path="/contact" element={<Contact />} />
+                        <Route path="/users" element={<Users />} />
+                        <Route path="/users/new" element={<CreateAccount/>} />
+                        <Route path="/users/:id" element={<EditAccount/>} />
+                        <Route path="*" element={<></>} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </LoggedAccountProvider>
     )
 }
 

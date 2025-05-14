@@ -6,10 +6,16 @@ export const fetchUsers = createAsyncThunk<User[]>("users/fetchUsers", async() =
     return new Promise<User[]>((resolve, reject) => {
         setTimeout(async() => {
             try{
-                const response = await fetch("/json/Users.json");
+                const response = await fetch(`${import.meta.env.VITE_API_URL as string}/users`, {
+                    method: "GET",
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem("token")}`
+                    }
+                });
 
                 if(!response.ok){
-                    throw new Error("An error occurred");
+                    const error = await response.json();
+                    throw new Error(error.message);
                 }
 
                 const users: User[] = await response.json();
@@ -23,31 +29,108 @@ export const fetchUsers = createAsyncThunk<User[]>("users/fetchUsers", async() =
 });
 
 export const createUser = createAsyncThunk<User[], User>("users/createUser", async (newUser: User, thunkAPI) => {
-    const state = thunkAPI.getState() as RootState;
-    const { users } = state.users;
-    const createdUser = [...users, newUser];
-    return createdUser;
+    return new Promise<User[]>(async (resolve, reject) => {
+        let user = {} as User;
+        try{
+            const response = await fetch(`${import.meta.env.VITE_API_URL as string}/users/new`, {
+                method: "POST",
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user: newUser.user,
+                    email: newUser.email,
+                    passwd: newUser.passwd,
+                    token: newUser.token
+                })
+            });
+
+            if(!response.ok){
+                const error = await response.json();
+                throw new Error(error.message);
+            }
+
+            user = await response.json();
+        }
+        catch(error){
+            console.log(error);
+            reject(error);
+        }
+        const state = thunkAPI.getState() as RootState;
+        const { users } = state.users;
+        const createdUser = [...users, user];
+        resolve(createdUser);
+    });
 });
 
 export const updateUser = createAsyncThunk<User[], User>("users/updateUser", async (updatedUser: User, thunkAPI) => {
-    const state = thunkAPI.getState() as RootState;
-    const { users } = state.users;
-    const updatedUsers = users.map((user: User) => {
-        if(user.id !== updatedUser.id){
-            return user;
+    return new Promise<User[]>(async (resolve, reject) => {
+        let user = {} as User;
+        try{
+            const response = await fetch(`${import.meta.env.VITE_API_URL as string}/users/${updatedUser._id}`, {
+                method: "PUT",
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user: updatedUser.user,
+                    email: updatedUser.email,
+                    passwd: updatedUser.passwd,
+                    token: updatedUser.token
+                })
+            });
+
+            if(!response.ok){
+                const error = await response.json();
+                throw new Error(error.message);
+            }
+
+            user = await response.json();
         }
-        else{
-            return updatedUser;
+        catch(error){
+            reject(error);
         }
+        const state = thunkAPI.getState() as RootState;
+        const { users } = state.users;
+        const updatedUsers = users.map((userIterated: User) => {
+            if(userIterated._id !== updatedUser._id){
+                return userIterated;
+            }
+            else{
+                console.log("A");
+                return user;
+            }
+        });
+        resolve(updatedUsers);
     });
-    return updatedUsers;
 });
 
-export const deleteUser = createAsyncThunk<User[], number>("users/deleteUser", async (user_id: number, thunkAPI) => {
-    const state = thunkAPI.getState() as RootState;
-    const { users } = state.users;
-    const deletedUser = users.filter((user: User) => user.id !== user_id);
-    return deletedUser;
+export const deleteUser = createAsyncThunk<User[], string>("users/deleteUser", async (user_id: string, thunkAPI) => {
+    return new Promise<User[]>(async (resolve, reject) => {
+        try{
+            const response = await fetch(`${import.meta.env.VITE_API_URL as string}/users/${user_id}`, {
+                method: "DELETE",
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if(!response.ok){
+                const error = await response.json();
+                throw new Error(error.message);
+            }
+        }
+        catch(error){
+            reject(error);
+        }
+        const state = thunkAPI.getState() as RootState;
+        const { users } = state.users;
+        const deletedUser = users.filter((user: User) => user._id !== user_id);
+        resolve(deletedUser);
+    });
 });
 
 const usersSlice = createSlice({

@@ -4,28 +4,26 @@ import { Room, RoomState } from "../../interfaces/RoomInterfaces";
 import { enumRoomStatus } from "../../enums/RoomEnum";
 
 export const fetchRooms = createAsyncThunk<Room[]>("rooms/fetchRooms", async() => {
-    return new Promise<Room[]>((resolve, reject) => {
-        setTimeout(async() => {
-            try{
-                const response = await fetch(`${import.meta.env.VITE_API_URL as string}/rooms`, {
-                    method: "GET",
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem("token")}`
-                    }
-                });
-
-                if(!response.ok){
-                    const error = await response.json();
-                    throw new Error(error.message);
+    return new Promise<Room[]>(async (resolve, reject) => {
+        try{
+            const response = await fetch(`${import.meta.env.VITE_API_URL as string}/rooms`, {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`
                 }
+            });
 
-                const rooms: Room[] = await response.json();
-                resolve(rooms);
+            if(!response.ok){
+                const error = await response.json();
+                throw new Error(error.message);
             }
-            catch(error){
-                reject(error);
-            }
-        }, 200);
+
+            const rooms: Room[] = await response.json();
+            resolve(rooms);
+        }
+        catch(error){
+            reject(error);
+        }
     });
 });
 
@@ -49,6 +47,7 @@ export const filterRooms = createAsyncThunk<Room[], string>("rooms/filterRooms",
 
 export const createRoom = createAsyncThunk<Room[], Room>("rooms/createRoom", async (newRoom: Room, thunkAPI) => {
     return new Promise<Room[]>(async (resolve, reject) => {
+        let room = {} as Room;
         try{
             const response = await fetch(`${import.meta.env.VITE_API_URL as string}/rooms/new`, {
                 method: "POST",
@@ -66,14 +65,14 @@ export const createRoom = createAsyncThunk<Room[], Room>("rooms/createRoom", asy
                 throw new Error(error.message);
             }
 
-            const rooms: Room = await response.json();
+            room = await response.json();
         }
         catch(error){
             reject(error);
         }
         const state = thunkAPI.getState() as RootState;
         const { rooms } = state.rooms;
-        const createdRoom = [...rooms, newRoom];
+        const createdRoom = [...rooms, room];
         resolve(createdRoom);
     });
 });

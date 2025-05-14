@@ -3,17 +3,43 @@ import * as StyledForm from "../../js/FormStyledComponents";
 import * as StyledComponents from "./LoginStyledComponents";
 import { useNavigate } from "react-router-dom";
 import PageWrapper from "../../components/PageWrapper";
-import { actionLoggedInterface, logedUserInterface } from "../../interfaces/loggedUserInterfaces";
+import { actionLoggedInterface, loggedAccountContextInterface } from "../../interfaces/loggedUserInterfaces";
+import { useLoggedAccount } from "./LoggedAccountContext";
 
 
-function Login({loggedAccount, loggedAccountDispatch}: {loggedAccount: logedUserInterface, loggedAccountDispatch: React.ActionDispatch<[action: actionLoggedInterface]>}){
+function Login(){
     const [ username, setUsername ] = useState("");
     const [ passwd, setPasswd ] = useState("");
     const navigate = useNavigate();
 
+    const { loggedAccount, loggedAccountDispatch } = useLoggedAccount() as loggedAccountContextInterface;
+
     useEffect(() => {
         if(localStorage.getItem("token") !== null){
             loggedAccountDispatch({type: "login/loginWithToken", token: localStorage.getItem("token") as string} as actionLoggedInterface);
+            const loginWithToken = async () => {
+                try{
+                    const response = await fetch(`${import.meta.env.VITE_API_URL as string}/login/withToken`, {
+                        method: "POST",
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({})
+                    });
+        
+                    if(!response.ok){
+                        const error = await response.json();
+                        throw new Error(error.message);
+                    }
+                    const loggedUser = await response.json();
+                    loggedAccountDispatch({type: "login/login", user: loggedUser.user.user, email: loggedUser.user.email, token: loggedUser.token} as actionLoggedInterface);
+                }
+                catch(error){
+                    loggedAccountDispatch({type: "login/loginFailed", error: error as Error} as actionLoggedInterface);
+                }
+            }
+            loginWithToken();
         }
     }, []);
 

@@ -4,13 +4,15 @@ import * as StyledForm from "../../js/FormStyledComponents";
 import * as StyledComponents from "../Login/LoginStyledComponents";
 import { useNavigate, useParams } from "react-router-dom";
 import PageWrapper from "../../components/PageWrapper";
-import { updateUser } from "../Users/UsersSlice";
-import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { fetchUsers, updateUser } from "../Users/UsersSlice";
+import { RootState, useAppDispatch, useAppSelector } from "../../redux/store";
+import { User } from "../../interfaces/UserInterfaces";
 
 function EditAccount(){
     const dispatch = useDispatch<useAppDispatch>();
     const { id } = useParams();
-    const user = useAppSelector(state => state.users.users[parseInt(id as string) - 1]);
+    const users = useAppSelector((state: RootState) => state.users);
+    const [ user, setUser ] = useState<User>();
     const [ username, setUsername ] = useState<string>("");
     const [ email, setEmail ] = useState<string>("");
     const [ passwd, setPasswd ] = useState<string>("");
@@ -20,6 +22,18 @@ function EditAccount(){
     const [ isNonValidPasswd, setIsNonValidPasswd ] = useState<boolean>(false);
     const [ isDifferentPasswd, setIsDifferentPasswd ] = useState<boolean>(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if(users.loading as boolean){
+            dispatch(fetchUsers());
+        }
+    }, []);
+
+    useEffect(() => {
+        if(!users.loading){
+            setUser(users.users.find(user => user._id === (id as string)));
+        }
+    }, [users]);
     
     useEffect(() => {
         if(user !== undefined){
@@ -38,7 +52,7 @@ function EditAccount(){
         setIsDifferentPasswd(passwd !== confirmPasswd);
         setIsNonValidPasswd(passwd.length < 5);
         if(username !== "" && regex.exec(email) !== null && passwd === confirmPasswd && passwd.length >= 5){
-            dispatch(updateUser({id: parseInt(id as string), user: username as string, email: email as string, passwd: passwd as string, token: user.token as string}));
+            dispatch(updateUser({_id: id as string, user: username as string, email: email as string, passwd: passwd as string, token: (user as User).token as string}));
             navigate("/users");
         }
     }

@@ -3,11 +3,14 @@ import LateralMenu from '../../components/LateralMenu/LateralMenu';
 import Header from '../../components/Header/Header'
 import { PageWrapper } from '../../js/GlobalStyledComponents';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { actionLoggedInterface, logedUserInterface } from '../../interfaces/loggedUserInterfaces';
+import { useLoggedAccount } from '../Login/LoggedAccountContext';
+import { loggedAccountContextInterface } from '../../interfaces/loggedUserInterfaces';
 
-function GlobalLayout({loggedAccount, loggedAccountDispatch}: {loggedAccount: logedUserInterface, loggedAccountDispatch: React.ActionDispatch<[action: actionLoggedInterface]>}){
+function GlobalLayout(){
     const [toggle, setToggle] = useState<boolean>(true);
     const navigate = useNavigate();
+    
+    const { loggedAccount, loggedAccountDispatch } = useLoggedAccount() as loggedAccountContextInterface;
 
     const Toggler = () => {
         setToggle(!toggle);

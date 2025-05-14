@@ -31,7 +31,7 @@ function CreateAccount(){
         setIsNonValidPasswd(passwd.length < 5);
         if(username !== "" && regex.exec(email) !== null && passwd === confirmPasswd && passwd.length >= 5){
             const token = Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2);
-            dispatch(createUser({id: users.users.length + 1, user: username, email: email, passwd: passwd, token: token} as User));
+            dispatch(createUser({user: username, email: email, passwd: passwd, token: token} as User));
             navigate("/users");
         }
     }

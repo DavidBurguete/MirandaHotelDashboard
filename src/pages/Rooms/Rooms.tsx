@@ -22,9 +22,7 @@ const Rooms = () => {
     const [ isBooked, setIsBooked ] = useState<boolean>(false);
 
     useEffect(() => {
-        if(rooms.loading){
-            dispatch(fetchRooms());
-        }
+        dispatch(fetchRooms());
     }, []);
 
     const setFilter = (event: React.MouseEvent) => {
