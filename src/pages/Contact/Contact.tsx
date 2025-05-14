@@ -18,7 +18,12 @@ function Contact(){
     const [ isPending, setIsPending ] = useState(false);
 
     useEffect(() => {
-        fetch("/json/Contact.json", { mode: "cors" })
+        fetch(`${import.meta.env.VITE_API_URL as string}/contact`, {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`
+                }
+            })
             .then((response) => response.json())
             .then((response) => {
                 setMessages(response.sort((a: ContactInterface, b: ContactInterface) => new Date(a.date).getDate() - new Date(b.date).getDate()));
@@ -77,10 +82,10 @@ function Contact(){
                 <StyledComponents.NoPendingMessages>There are no new messages to display</StyledComponents.NoPendingMessages> :
                 <Table headers={headers as string[]} action={undefined}>{
                     filteredMessages.map(message => {
-                        return <tr key={message.message_id as number}>
+                        return <tr key={message._id as string}>
                             <StyledComponents.TDDate>
                                 <StyledComponents.TDHeader>{new Date(message.date as string).toString().split(" ").slice(1,4).join(" ")}</StyledComponents.TDHeader>
-                                <StyledComponents.TDText>#{message.message_id as number}</StyledComponents.TDText>
+                                <StyledComponents.TDText>#{message._id as string}</StyledComponents.TDText>
                             </StyledComponents.TDDate>
                             <StyledComponents.TD>
                                 <StyledComponents.TDHeader>{message.customer as string}</StyledComponents.TDHeader>

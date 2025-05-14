@@ -13,15 +13,18 @@ function PendingReviews({messages, setMessages}: {messages: ContactInterface[], 
     const [ firstSlide, setFirstSlide ] = useState(true);
     const [ lastSlide, setLastSlide ] = useState(false);
 
-    const archive = (id: number) => {
-        const copy = messages.map(message => {
-            return message.message_id === id ? {
-                ...message,
-                status: MessageStatus.Archived
-            } :
-            message;
-        }) as ContactInterface[];
-        setMessages(copy);
+    const archive = (id: string) => {
+        fetch(`${import.meta.env.VITE_API_URL as string}/contact/${id}`, {
+            method: "PUT",
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
+            }
+        })
+        .then((response) => response.json())
+        .then((response) => {
+            setMessages(response.sort((a: ContactInterface, b: ContactInterface) => new Date(a.date).getDate() - new Date(b.date).getDate()));
+        })
+        .catch((error) => console.error(error));
     }
 
     return <StyledComponents.PendingReviews>
@@ -43,13 +46,13 @@ function PendingReviews({messages, setMessages}: {messages: ContactInterface[], 
             {messages.filter(message => message.status === MessageStatus.Pending).length <= 0 ?
                 <StyledComponents.Comment>There are no new messages to display</StyledComponents.Comment> :
                 messages.filter(message => message.status === MessageStatus.Pending).map(message => {
-                    return <SwiperSlide key={message.message_id as number}>
+                    return <SwiperSlide key={message._id as string}>
                         <StyledComponents.Message>
                             <StyledComponents.CommentHeader>{message.subject as string}</StyledComponents.CommentHeader>
                             <StyledComponents.Comment>{message.comment as string}</StyledComponents.Comment>
                             <StyledComponents.UserArchiveWrapper>
                                 <StyledComponents.User>{message.customer as string}</StyledComponents.User>
-                                <Button $background="#5AD07A" $color="white" onClick={() => archive(message.message_id as number)}>Archive</Button>
+                                <Button $background="#5AD07A" $color="white" onClick={() => archive(message._id as string)}>Archive</Button>
                             </StyledComponents.UserArchiveWrapper>
                         </StyledComponents.Message>
                     </SwiperSlide>;

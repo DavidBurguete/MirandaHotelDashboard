@@ -13,7 +13,12 @@ function Dashboard(){
     const [ messages, setMessages ] = useState<ContactInterface[]>([]);
 
     useEffect(() => {
-        fetch("/json/Contact.json", { mode: "cors" })
+        fetch(`${import.meta.env.VITE_API_URL as string}/contact`, {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`
+                }
+            })
             .then((response) => response.json())
             .then((response) => {
                 setMessages(response);
