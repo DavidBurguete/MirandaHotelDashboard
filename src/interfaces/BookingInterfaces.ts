@@ -1,10 +1,10 @@
 import { BookingStatus } from "../enums/BookingEnum";
+import { Room } from "./RoomInterfaces";
 
 export interface Booking {
+    _id: string,
     client_name: string,
-    booking_id: number,
-    room_id: number,
-    client_id: number,
+    room: Room,
     order_date: string,
     check_in_date: string,
     check_out_date: string,
@@ -31,6 +31,6 @@ export interface BookingButtonStatus {
 }
 
 export interface BookingAvailableRoom {
-    value: number,
+    value: string,
     label: string
 }

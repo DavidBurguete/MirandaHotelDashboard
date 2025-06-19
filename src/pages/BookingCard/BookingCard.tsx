@@ -80,10 +80,8 @@ const formatDay = (day: number) => {
 function BookingCard(){
     const dispatch = useDispatch<useAppDispatch>();
     const bookings = useAppSelector((state: RootState) => state.bookings);
-    const { rooms } = useAppSelector((state: RootState) => state.rooms);
     const [ bookedCard, setBookedCard ] = useState<Booking>();
     const [ room, setRoom ] = useState<Room>();
-    const [ floor, setFloor ] = useState<string>("");
     const [ checkIn, setCheckIn ] = useState<string>("");
     const [ checkOut, setCheckOut ] = useState<string>("");
     const { id } = useParams();
@@ -97,13 +95,13 @@ function BookingCard(){
 
     useEffect(() => {
         if(!bookings.loading){
-            setBookedCard(bookings.bookings[parseInt((id as string)) - 1]);
+            setBookedCard(bookings.bookings.find(booking => booking._id === (id as string)));
         }
     }, [bookings]);
 
     useEffect(() => {
         if(bookedCard !== undefined){
-            setRoom(rooms[bookedCard.room_id - 1]);
+            setRoom(bookedCard.room);
             let check_in = new Date(bookedCard.check_in_date).toString().split(" ").slice(1, 4);
             check_in[0] = fullMonth(check_in[0] as string);
             check_in[1] = formatDay(parseInt(check_in[1]) as number);
@@ -115,33 +113,13 @@ function BookingCard(){
         }
     }, [bookedCard]);
 
-    useEffect(() => {
-        if(room !== undefined){
-            const text =  ` Floor, Room ${(room.room_id - 1) % 25 + 1}`;
-            switch((room.room_id - 1) / 25 + 1){
-                case 1:
-                    setFloor("1st" + text);
-                    break;
-                case 2:
-                    setFloor("2nd" + text);
-                    break;
-                case 3:
-                    setFloor("3rd" + text);
-                    break;
-                default:
-                    setFloor(((room.room_id - 1) / 25 + 1) + "th" + text);
-                    break;
-            }
-        }
-    }, [room]);
-
     return room === undefined || bookedCard === undefined ? 
         <Loading/> :
         <PageWrapper>
             <StyledComponents.Card>
                 <StyledComponents.CardTextWrapper>
                     <StyledComponents.Name>{bookedCard.client_name as string}</StyledComponents.Name>
-                    <StyledComponents.ID>#{bookedCard.booking_id as number}</StyledComponents.ID>
+                    <StyledComponents.ID>#{bookedCard._id as string}</StyledComponents.ID>
                     <StyledComponents.SameLineDataWrapper>
                         <div>
                             <StyledComponents.TextHeader>Check In</StyledComponents.TextHeader>
@@ -156,7 +134,7 @@ function BookingCard(){
                     <StyledComponents.SameLineDataWrapper>
                         <div>
                             <StyledComponents.TextHeader>Room Info</StyledComponents.TextHeader>
-                            <StyledComponents.TextMain>{floor as string}</StyledComponents.TextMain>
+                            <StyledComponents.TextMain>{room.room_name as string}</StyledComponents.TextMain>
                         </div>
                         <div>
                             <StyledComponents.TextHeader>Price</StyledComponents.TextHeader>

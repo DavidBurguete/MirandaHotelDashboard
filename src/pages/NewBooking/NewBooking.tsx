@@ -3,12 +3,13 @@ import Select, { SingleValue } from "react-select";
 import { useNavigate } from "react-router-dom";
 import * as FormStyled from "../../js/FormStyledComponents";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRooms } from "../Rooms/RoomsSlice";
+import { fetchRooms, updateRoom } from "../Rooms/RoomsSlice";
 import { createBooking, fetchBookings } from "../Bookings/BookingsSlice";
 import PageWrapper from "../../components/PageWrapper";
 import Loading from "../../components/Loading";
 import { RootState, useAppDispatch, useAppSelector } from "../../redux/store";
 import { Booking, BookingAvailableRoom } from "../../interfaces/BookingInterfaces";
+import { enumRoomStatus } from "../../enums/RoomEnum";
 
 function today(){
     const today = new Date();
@@ -43,22 +44,7 @@ function NewBooking(){
     useEffect(() => {
         if(!rooms.loading){
             setRoomsAvailable(rooms.rooms.filter(room => room.status === "Available").map(room => {
-                let floor = "";
-                switch(Math.floor((room.room_id - 1) / 25) + 1){
-                    case 1:
-                        floor += "1st";
-                        break;
-                    case 2:
-                        floor += "2nd";
-                        break;
-                    case 3:
-                        floor += "3rd";
-                        break;
-                    default:
-                        floor += Math.floor((room.room_id - 1) / 25) + 1 + "th";
-                        break;
-                }
-                return {value: room.room_id, label: `${floor} Floor, Room ${(room.room_id - 1) % 25 + 1}`};
+                return {value: room._id, label: room.room_name};
             }));
         }
     }, [rooms]);
@@ -99,9 +85,7 @@ function NewBooking(){
         if(!notFullfilledData){
             const newBooking = {
                 "client_name": clientName,
-                "booking_id": bookings.bookings.length + 1,
-                "room_id": (roomID as BookingAvailableRoom).value,
-                "client_id": bookings.bookings.length + 1,
+                "room": rooms.rooms.find(room => room._id === (roomID as BookingAvailableRoom).value),
                 "order_date": formatDateForBookingObject(today()),
                 "check_in_date": formatDateForBookingObject(checkIn),
                 "check_out_date": formatDateForBookingObject(checkOut),
@@ -109,6 +93,7 @@ function NewBooking(){
                 "special_request": specialRequest
             }as Booking;
             dispatch(createBooking(newBooking));
+            dispatch(updateRoom({ ...newBooking.room, status: enumRoomStatus.Booked }));
             navigate("/bookings");
         }
     }

@@ -36,6 +36,7 @@ function Login(){
                     loggedAccountDispatch({type: "login/login", user: loggedUser.user.user, email: loggedUser.user.email, token: loggedUser.token} as actionLoggedInterface);
                 }
                 catch(error){
+                    localStorage.removeItem("token");
                     loggedAccountDispatch({type: "login/loginFailed", error: error as Error} as actionLoggedInterface);
                 }
             }

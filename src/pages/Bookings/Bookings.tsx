@@ -6,12 +6,13 @@ import Loading from "../../components/Loading";
 import { NavLink, useNavigate } from "react-router-dom";
 import { addHeaders, deleteBooking, fetchBookings, filterBookings, sortBookings } from "./BookingsSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRooms } from "../Rooms/RoomsSlice";
+import { fetchRooms, updateRoom } from "../Rooms/RoomsSlice";
 import PageWrapper from "../../components/PageWrapper";
 import { RootState, useAppDispatch } from "../../redux/store";
 import { Booking, BookingButtonStatus, BookingState, BookingTableHeaders } from "../../interfaces/BookingInterfaces";
 import { BookingStatus } from "../../enums/BookingEnum";
-import { enumRoomType } from "../../enums/RoomEnum";
+import { enumRoomStatus, enumRoomType } from "../../enums/RoomEnum";
+import { Room } from "../../interfaces/RoomInterfaces";
 
 function Bookings(){
     const dispatch = useDispatch<useAppDispatch>();
@@ -26,50 +27,50 @@ function Bookings(){
     const [ isProgress, setIsProgres ] = useState<boolean>(false);
     
     useEffect(() => {
-        if(bookings.loading as boolean){
-            dispatch(fetchRooms());
-            dispatch(fetchBookings());
-            const headersOrdered = [
-                {
-                    head: "Guest",
-                    action: null
-                },
-                {
-                    head: "Order Date",
-                    action: "OrderDate"
-                },
-                {
-                    head: "Check In",
-                    action: "CheckInDate"
-                },
-                {
-                    head: "Check Out",
-                    action: "CheckOutDate"
-                },
-                {
-                    head: "Special Request",
-                    action: null
-                },
-                {
-                    head: "Room Type",
-                    action: null
-                },
-                {
-                    head: "Status",
-                    action: null
-                }
-            ]
-            dispatch(addHeaders(headersOrdered));
-        }
+        dispatch(fetchRooms());
+        dispatch(fetchBookings());
+        const headersOrdered = [
+            {
+                head: "Guest",
+                action: null
+            },
+            {
+                head: "Order Date",
+                action: "OrderDate"
+            },
+            {
+                head: "Check In",
+                action: "CheckInDate"
+            },
+            {
+                head: "Check Out",
+                action: "CheckOutDate"
+            },
+            {
+                head: "Special Request",
+                action: null
+            },
+            {
+                head: "Room Type",
+                action: null
+            },
+            {
+                head: "Status",
+                action: null
+            }
+        ]
+        dispatch(addHeaders(headersOrdered));
     }, []);
 
-    const navigateToBookingCard = (booking_id: number) => {
-        navigate(`/bookings/${booking_id}`);
+    const navigateToBookingCard = (_id: string) => {
+        navigate(`/bookings/${_id}`);
     }
 
-    const handleDeleteBooking = (event: React.MouseEvent, booking_id: number) => {
+    const handleDeleteBooking = (event: React.MouseEvent, _id: string, room_id: string) => {
         event.stopPropagation();
-        dispatch(deleteBooking(booking_id));
+        dispatch(deleteBooking(_id));
+        const roomAvailableAgain = rooms.find(room => room._id === room_id) as Room;
+        dispatch(updateRoom({ ...roomAvailableAgain, status: enumRoomStatus.Available }));
     }
 
     useEffect(() => {
@@ -96,19 +97,19 @@ function Bookings(){
                         }
                         break;
                 }
-                return <StyledComponents.TR key={booking.booking_id as number} onClick={() => navigateToBookingCard(booking.booking_id as number)}>
+                return <StyledComponents.TR key={booking._id as string} onClick={() => navigateToBookingCard(booking._id as string)}>
                     <StyledComponents.TDMoreContent>
                         <p>{booking.client_name as string}</p>
-                        <StyledComponents.ID>ID #{booking.booking_id as number}</StyledComponents.ID>
+                        <StyledComponents.ID>ID #{booking._id as string}</StyledComponents.ID>
                     </StyledComponents.TDMoreContent>
                     <StyledComponents.TD>{booking.order_date as string}</StyledComponents.TD>
                     <StyledComponents.TD>{booking.check_in_date as string}</StyledComponents.TD>
                     <StyledComponents.TD>{booking.check_out_date as string}</StyledComponents.TD>
                     <StyledComponents.TD><Button $background="#EBF1EF" $color="#135846">View Notes</Button></StyledComponents.TD>
-                    <StyledComponents.TD>{rooms[(booking.room_id as number) - 1].room_type as enumRoomType}</StyledComponents.TD>
+                    <StyledComponents.TD>{(booking.room as Room).room_type as enumRoomType}</StyledComponents.TD>
                     <td>
                         <Button $background={status.background} $color={status.color}>{booking.status}</Button>
-                        <StyledComponents.CrossCircled onClick={(event) => {handleDeleteBooking(event, booking.booking_id)}}/>
+                        <StyledComponents.CrossCircled onClick={(event) => {handleDeleteBooking(event, booking._id, booking.room._id)}}/>
                     </td>
                 </StyledComponents.TR>;
             }));

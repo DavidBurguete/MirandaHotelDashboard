@@ -3,22 +3,26 @@ import { RootState } from "../../redux/store";
 import { Booking, BookingState, BookingTableHeaders } from "../../interfaces/BookingInterfaces";
 
 export const fetchBookings = createAsyncThunk<Booking[]>("bookins/fetchBookins", async() => {
-    return new Promise((resolve, reject) => {
-        setTimeout(async() => {
-            try{
-                const response = await fetch("/json/Bookings.json");
-
-                if(!response.ok){
-                    throw new Error("An error occurred");
+    return new Promise<Booking[]>(async (resolve, reject) => {
+        try{
+            const response = await fetch(`${import.meta.env.VITE_API_URL as string}/bookings`, {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`
                 }
+            });
 
-                const bookings = await response.json();
-                resolve(bookings);
+            if(!response.ok){
+                const error = await response.json();
+                throw new Error(error.message);
             }
-            catch(error){
-                reject(error);
-            }
-        }, 200);
+
+            const bookings: Booking[] = await response.json();
+            resolve(bookings);
+        }
+        catch(error){
+            reject(error);
+        }
     });
 });
 
@@ -65,31 +69,107 @@ export const sortBookings = createAsyncThunk("bookings/sortBookings", async(sort
 });
 
 export const createBooking = createAsyncThunk("bookings/createBooking", async (newBooking: Booking, thunkAPI) => {
-    const state = thunkAPI.getState() as RootState;
-    const { bookings } = state.bookings as BookingState;
-    const createdBooking = [...bookings, newBooking];
-    return createdBooking;
+    return new Promise<Booking[]>(async (resolve, reject) => {
+        let booking = {} as Booking;
+        try{
+            const response = await fetch(`${import.meta.env.VITE_API_URL as string}/bookings/new`, {
+                method: "POST",
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    client_name: newBooking.client_name,
+                    room: newBooking.room,
+                    order_date: newBooking.order_date,
+                    check_in_date: newBooking.check_in_date,
+                    check_out_date: newBooking.check_out_date,
+                    status: newBooking.status,
+                    special_request: newBooking.special_request
+                })
+            });
+
+            if(!response.ok){
+                const error = await response.json();
+                throw new Error(error.message);
+            }
+
+            booking = await response.json();
+        }
+        catch(error){
+            reject(error);
+        }
+        const state = thunkAPI.getState() as RootState;
+        const { bookings } = state.bookings as BookingState;
+        const createdBooking = [...bookings, booking];
+        return createdBooking;
+    });
 });
 
 export const updateBooking = createAsyncThunk("bookings/updateBooking", async (updatedBooking: Booking, thunkAPI) => {
-    const state = thunkAPI.getState() as RootState;
-    const { bookings } = state.bookings as BookingState;
-    const updatedBookings = bookings.map((booking: Booking) => {
-        if(booking.booking_id !== updatedBooking.booking_id){
-            return booking;
+    return new Promise<Booking[]>(async (resolve, reject) => {
+        try{
+            const response = await fetch(`${import.meta.env.VITE_API_URL as string}/bookings/${updatedBooking._id}`, {
+                method: "PUT",
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    updatedBooking
+                })
+            });
+
+            if(!response.ok){
+                const error = await response.json();
+                throw new Error(error.message);
+            }
+
+            const bookings: Booking = await response.json();
         }
-        else{
-            return updatedBooking;
+        catch(error){
+            reject(error);
         }
+        const state = thunkAPI.getState() as RootState;
+        const { bookings } = state.bookings;
+        const updatedBookings = bookings.map((booking: Booking) => {
+            if(booking._id !== updatedBooking._id){
+                return booking;
+            }
+            else{
+                return updatedBooking;
+            }
+        });
+        resolve(updatedBookings);
     });
-    return updatedBookings;
 });
 
-export const deleteBooking = createAsyncThunk("bookings/deleteBooking", async (booking_id: number, thunkAPI) => {
-    const state = thunkAPI.getState() as RootState;
-    const { bookings } = state.bookings as BookingState;
-    const deletedBooking = bookings.filter((booking: Booking) => booking.booking_id !== booking_id);
-    return deletedBooking;
+export const deleteBooking = createAsyncThunk("bookings/deleteBooking", async (_id: string, thunkAPI) => {
+    return new Promise<Booking[]>(async (resolve, reject) => {
+        try{
+            const response = await fetch(`${import.meta.env.VITE_API_URL as string}/bookings/${_id}`, {
+                method: "DELETE",
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if(!response.ok){
+                const error = await response.json();
+                throw new Error(error.message);
+            }
+
+            const bookings: Booking = await response.json();
+        }
+        catch(error){
+            reject(error);
+        }
+        const state = thunkAPI.getState() as RootState;
+        const { bookings } = state.bookings as BookingState;
+        const deletedBooking = bookings.filter((booking: Booking) => booking._id !== _id);
+        resolve(deletedBooking);
+    });
 });
 
 export const addHeaders = createAsyncThunk("bookings/addHeaders", (headers: BookingTableHeaders[]) => {

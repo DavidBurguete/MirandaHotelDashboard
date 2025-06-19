@@ -8,6 +8,7 @@ import * as StyledComponents from "./PendingReviewsStyledComponents";
 import { Card, NavigationButton } from "../../pages/BookingCard/BookingCardStyledComponents";
 import { ContactInterface } from "../../interfaces/ContactInterface";
 import { MessageStatus } from "../../enums/ContactEnum";
+import Loading from "../Loading";
 
 function PendingReviews({messages, setMessages}: {messages: ContactInterface[], setMessages: React.Dispatch<React.SetStateAction<ContactInterface[]>>}){
     const [ firstSlide, setFirstSlide ] = useState(true);
@@ -27,7 +28,9 @@ function PendingReviews({messages, setMessages}: {messages: ContactInterface[], 
         .catch((error) => console.error(error));
     }
 
-    return <StyledComponents.PendingReviews>
+    return messages.length === undefined ? 
+    <Loading/> :
+    <StyledComponents.PendingReviews>
         <StyledComponents.PRHeader>Latest Reviews by Customers</StyledComponents.PRHeader>
         <Swiper
             onSlideChange={(swiper) => {
