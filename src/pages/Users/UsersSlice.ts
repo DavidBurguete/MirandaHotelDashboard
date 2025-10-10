@@ -54,7 +54,6 @@ export const createUser = createAsyncThunk<User[], User>("users/createUser", asy
             user = await response.json();
         }
         catch(error){
-            console.log(error);
             reject(error);
         }
         const state = thunkAPI.getState() as RootState;
@@ -99,7 +98,6 @@ export const updateUser = createAsyncThunk<User[], User>("users/updateUser", asy
                 return userIterated;
             }
             else{
-                console.log("A");
                 return user;
             }
         });

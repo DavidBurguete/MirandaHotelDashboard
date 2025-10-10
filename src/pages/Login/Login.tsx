@@ -8,8 +8,8 @@ import { useLoggedAccount } from "./LoggedAccountContext";
 
 
 function Login(){
-    const [ username, setUsername ] = useState("");
-    const [ passwd, setPasswd ] = useState("");
+    const [ username, setUsername ] = useState("admin");
+    const [ passwd, setPasswd ] = useState("admin");
     const navigate = useNavigate();
 
     const { loggedAccount, loggedAccountDispatch } = useLoggedAccount() as loggedAccountContextInterface;

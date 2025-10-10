@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -6,29 +6,24 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Button } from "../../js/GlobalStyledComponents";
 import * as StyledComponents from "./PendingReviewsStyledComponents";
 import { Card, NavigationButton } from "../../pages/BookingCard/BookingCardStyledComponents";
-import { ContactInterface } from "../../interfaces/ContactInterface";
+import { ContactInterface, ContactState } from "../../interfaces/ContactInterface";
 import { MessageStatus } from "../../enums/ContactEnum";
 import Loading from "../Loading";
+import { RootState, useAppDispatch, useAppSelector } from "../../redux/store";
+import { archiveMessage, fetchMessages } from "../../pages/Contact/ContactSlice";
+import { useDispatch } from "react-redux";
 
-function PendingReviews({messages, setMessages}: {messages: ContactInterface[], setMessages: React.Dispatch<React.SetStateAction<ContactInterface[]>>}){
+function PendingReviews(){
+    const messages: ContactState = useAppSelector((state: RootState) => state.messages);
+    const dispatch = useDispatch<useAppDispatch>();
     const [ firstSlide, setFirstSlide ] = useState(true);
     const [ lastSlide, setLastSlide ] = useState(false);
 
     const archive = (id: string) => {
-        fetch(`${import.meta.env.VITE_API_URL as string}/contact/${id}`, {
-            method: "PUT",
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem("token")}`
-            }
-        })
-        .then((response) => response.json())
-        .then((response) => {
-            setMessages(response.sort((a: ContactInterface, b: ContactInterface) => new Date(a.date).getDate() - new Date(b.date).getDate()));
-        })
-        .catch((error) => console.error(error));
+        dispatch(archiveMessage(id));
     }
 
-    return messages.length === undefined ? 
+    return messages.loading ? 
     <Loading/> :
     <StyledComponents.PendingReviews>
         <StyledComponents.PRHeader>Latest Reviews by Customers</StyledComponents.PRHeader>
@@ -46,9 +41,9 @@ function PendingReviews({messages, setMessages}: {messages: ContactInterface[], 
             }}
             style={{"borderTopRightRadius": "1.25rem"}}
         >
-            {messages.filter(message => message.status === MessageStatus.Pending).length <= 0 ?
+            {messages.messages.filter(message => message.status === MessageStatus.Pending).length <= 0 ?
                 <StyledComponents.Comment>There are no new messages to display</StyledComponents.Comment> :
-                messages.filter(message => message.status === MessageStatus.Pending).map(message => {
+                messages.messages.filter(message => message.status === MessageStatus.Pending).map((message: ContactInterface) => {
                     return <SwiperSlide key={message._id as string}>
                         <StyledComponents.Message>
                             <StyledComponents.CommentHeader>{message.subject as string}</StyledComponents.CommentHeader>

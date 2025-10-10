@@ -5,11 +5,15 @@ import Table from "../../components/Table/Table";
 import { Filter, Filters } from "../../js/GlobalStyledComponents";
 import * as StyledComponents from "./ContactStyledComponents";
 import PageWrapper from "../../components/PageWrapper";
-import { ContactInterface } from "../../interfaces/ContactInterface";
+import { ContactInterface, ContactState } from "../../interfaces/ContactInterface";
 import { MessageStatus } from "../../enums/ContactEnum";
+import { RootState, useAppDispatch, useAppSelector } from "../../redux/store";
+import { useDispatch } from "react-redux";
+import { archiveMessage, fetchMessages } from "./ContactSlice";
 
 function Contact(){
-    const [ messages, setMessages ] = useState<ContactInterface[]>([]);
+    const messages: ContactState = useAppSelector((state: RootState) => state.messages);
+    const dispatch = useDispatch<useAppDispatch>();
     const [ filteredMessages, setFilteredMessages ] = useState<ContactInterface[]>([]);
     const [ headers, setHeaders ] = useState<string[]>([]);
     
@@ -18,26 +22,12 @@ function Contact(){
     const [ isPending, setIsPending ] = useState(false);
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL as string}/contact`, {
-                method: "GET",
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem("token")}`
-                }
-            })
-            .then((response) => response.json())
-            .then((response) => {
-                setMessages(response.sort((a: ContactInterface, b: ContactInterface) => new Date(a.date).getDate() - new Date(b.date).getDate()));
-                setFilteredMessages(response.sort((a: ContactInterface, b: ContactInterface) => new Date(a.date).getDate() - new Date(b.date).getDate()));
-                const headersOrdered = [
-                    "Date",
-                    "Customer",
-                    "Comment",
-                    "Status",
-                ];
-                setHeaders(headersOrdered);
-            })
-            .catch((error) => console.error(error));
+        dispatch(fetchMessages());
     }, []);
+
+    const archive = (id: string) => {
+        dispatch(archiveMessage(id));
+    }
 
     const setFilter = (event: React.MouseEvent) => {
         setIsAll(false);
@@ -46,15 +36,15 @@ function Contact(){
         const HTMLInputElement = event.target as HTMLInputElement;
         switch(HTMLInputElement.innerHTML){
             case "All Messages":
-                setFilteredMessages(messages);
+                setFilteredMessages(messages.messages);
                 setIsAll(true);
                 break;
             case "Archived":
-                setFilteredMessages(messages.filter(message => message.status === MessageStatus.Archived));
+                setFilteredMessages(messages.messages.filter(message => message.status === MessageStatus.Archived));
                 setIsArchived(true);
                 break;
             case "Pending":
-                setFilteredMessages(messages.filter(message => message.status === MessageStatus.Pending));
+                setFilteredMessages(messages.messages.filter(message => message.status === MessageStatus.Pending));
                 setIsPending(true);
                 break;
         }
@@ -62,17 +52,17 @@ function Contact(){
 
     useEffect(() => {
         if(isAll)
-            setFilteredMessages(messages);
+            setFilteredMessages(messages.messages);
         else if(isArchived)
-            setFilteredMessages(messages.filter(message => message.status === MessageStatus.Archived));
+            setFilteredMessages(messages.messages.filter(message => message.status === MessageStatus.Archived));
         else if(isPending)
-            setFilteredMessages(messages.filter(message => message.status === MessageStatus.Pending));
+            setFilteredMessages(messages.messages.filter(message => message.status === MessageStatus.Pending));
     }, [messages]);
     
-    return messages.length === 0 ? 
+    return messages.loading ? 
         <Loading/> :
         <PageWrapper>
-            <PendingReviews messages={messages} setMessages={setMessages}/>
+            <PendingReviews/>
             <Filters>
                 <Filter $filter={isAll as boolean} onClick={setFilter}>All Messages</Filter>
                 <Filter $filter={isArchived as boolean} onClick={setFilter}>Archived</Filter>
@@ -97,7 +87,12 @@ function Contact(){
                                 <StyledComponents.TDText>{message.comment as string}</StyledComponents.TDText>
                             </StyledComponents.TD>
                             <StyledComponents.TD>
-                                <StyledComponents.ArchiveButton $background={message.status === MessageStatus.Archived ? "#5AD07A" : "#E23428"} $color="white">{message.status}</StyledComponents.ArchiveButton>
+                                <StyledComponents.ArchiveButton $background={message.status === MessageStatus.Archived ? "#5AD07A" : "#E23428"} 
+                                    $color="white"
+                                    onClick={() => message.status === MessageStatus.Pending ? archive(message._id as string) : ""}
+                                >
+                                    {message.status}
+                                </StyledComponents.ArchiveButton>
                             </StyledComponents.TD>
                         </tr>;
                     })}

@@ -7,26 +7,20 @@ import { IoLogInOutline } from "react-icons/io5";
 import { IoLogOutOutline } from "react-icons/io5";
 import * as StyledComponents from "./DashboardStyledComponents";
 import PageWrapper from "../../components/PageWrapper";
-import { ContactInterface } from "../../interfaces/ContactInterface";
+import { ContactState } from "../../interfaces/ContactInterface";
+import { RootState, useAppDispatch, useAppSelector } from "../../redux/store";
+import { useDispatch } from "react-redux";
+import { fetchMessages } from "../Contact/ContactSlice";
 
 function Dashboard(){
-    const [ messages, setMessages ] = useState<ContactInterface[]>([]);
+    const messages: ContactState = useAppSelector((state: RootState) => state.messages);
+    const dispatch = useDispatch<useAppDispatch>();
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL as string}/contact`, {
-                method: "GET",
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem("token")}`
-                }
-            })
-            .then((response) => response.json())
-            .then((response) => {
-                setMessages(response);
-            })
-            .catch((error) => console.error(error));
+        dispatch(fetchMessages());
     }, []);
 
-    return messages.length === 0 ? 
+    return messages.loading ? 
         <Loading/> :
         <PageWrapper>
             <StyledComponents.KPIs>
@@ -67,7 +61,7 @@ function Dashboard(){
                     </StyledComponents.KPITextWrapper>
                 </StyledComponents.KPI>
             </StyledComponents.KPIs>
-            <PendingReviews messages={messages} setMessages={setMessages}/>
+            <PendingReviews/>
         </PageWrapper>;
 }
 

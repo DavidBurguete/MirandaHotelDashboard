@@ -53,7 +53,7 @@ function Users(){
                     </StyledComponents.TDMoreContent>
                     <StyledComponents.TD>{user.email as string}</StyledComponents.TD>
                     <StyledComponents.TD>*********</StyledComponents.TD>
-                    {loggedAccount.name as string === "admin" && <td>
+                    {loggedAccount.name as string === "admin" && loggedAccount.name as string !== user.user && <td>
                         <StyledComponents.CrossCircled onClick={(event: React.MouseEvent) => {handleDeleteUser(event, user._id as string)}}/>
                     </td>}
                 </StyledComponents.TR>;

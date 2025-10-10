@@ -10,3 +10,10 @@ export interface ContactInterface {
     comment: string;
     status: MessageStatus;
 }
+
+export interface ContactState {
+    tableHeaders: string[];
+    messages: ContactInterface[];
+    loading: boolean;
+    error: string | null;
+}
