@@ -13,19 +13,22 @@ import { Booking, BookingButtonStatus, BookingState, BookingTableHeaders } from 
 import { BookingStatus } from "../../enums/BookingEnum";
 import { enumRoomStatus, enumRoomType } from "../../enums/RoomEnum";
 import { Room } from "../../interfaces/RoomInterfaces";
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
+import TippyBox from "../../components/TippyBox/TippyBox";
 
-function Bookings(){
+function Bookings() {
     const dispatch = useDispatch<useAppDispatch>();
     const navigate = useNavigate();
     const { rooms } = useSelector((state: RootState) => state.rooms);
     const bookings = useSelector((state: RootState) => state.bookings);
-    const [ bookingsOrdered, setBookingsOrdered ] = useState<React.JSX.Element[]>([]);
+    const [bookingsOrdered, setBookingsOrdered] = useState<React.JSX.Element[]>([]);
 
-    const [ isAll, setIsAll ] = useState<boolean>(true);
-    const [ isIn, setIsIn ] = useState<boolean>(false);
-    const [ isOut, setIsOut ] = useState<boolean>(false);
-    const [ isProgress, setIsProgres ] = useState<boolean>(false);
-    
+    const [isAll, setIsAll] = useState<boolean>(true);
+    const [isIn, setIsIn] = useState<boolean>(false);
+    const [isOut, setIsOut] = useState<boolean>(false);
+    const [isProgress, setIsProgres] = useState<boolean>(false);
+
     useEffect(() => {
         dispatch(fetchRooms());
         dispatch(fetchBookings());
@@ -73,11 +76,30 @@ function Bookings(){
         dispatch(updateRoom({ ...roomAvailableAgain, status: enumRoomStatus.Available }));
     }
 
+    const hideOnPopperBlur = {
+        name: 'hideOnPopperBlur',
+        defaultValue: true,
+        fn(instance: any) {
+            return {
+                onCreate() {
+                    instance.reference.addEventListener('mouseenter', (e: MouseEvent) => {
+                        instance.popper.style = "display: block";
+                    });
+
+                    instance.reference.addEventListener('mouseout', (e: MouseEvent) => {
+                        instance.popper.style = "display: none";
+                    });
+                },
+            };
+        },
+    };
+
+
     useEffect(() => {
-        if(bookings.bookings.length > 0 && rooms.length > 0){
+        if (bookings.bookings.length > 0 && rooms.length > 0) {
             setBookingsOrdered(bookings.filteredBookings.map((booking: Booking) => {
                 let status = {} as BookingButtonStatus;
-                switch(booking.status as BookingStatus){
+                switch (booking.status as BookingStatus) {
                     case BookingStatus.CheckIn:
                         status = {
                             background: "#9BE3AF",
@@ -97,7 +119,8 @@ function Bookings(){
                         }
                         break;
                 }
-                return <StyledComponents.TR key={booking._id as string} onClick={() => navigateToBookingCard(booking._id as string)}>
+                // onClick={() => navigateToBookingCard(booking._id as string)}
+                return <StyledComponents.TR key={booking._id as string}>
                     <StyledComponents.TDMoreContent>
                         <p>{booking.client_name as string}</p>
                         <StyledComponents.ID>ID #{booking._id as string}</StyledComponents.ID>
@@ -105,11 +128,24 @@ function Bookings(){
                     <StyledComponents.TD>{booking.order_date as string}</StyledComponents.TD>
                     <StyledComponents.TD>{booking.check_in_date as string}</StyledComponents.TD>
                     <StyledComponents.TD>{booking.check_out_date as string}</StyledComponents.TD>
-                    <StyledComponents.TD><Button $background="#EBF1EF" $color="#135846">View Notes</Button></StyledComponents.TD>
+                    <StyledComponents.TD>
+                        <Tippy placement="top" delay={[0, 0]} plugins={[hideOnPopperBlur]} render={() => (
+                            <TippyBox
+                                $type={(booking.room as Room).room_type}
+                                $price={(booking.room as Room).price}
+                                $offer={(booking.room as Room).offer}
+                                $discount={(booking.room as Room).discount}
+                                $description={(booking.room as Room).description}
+                                $amenities={(booking.room as Room).amenities}
+                            ></TippyBox>
+                        )}>
+                            <Button $background="#EBF1EF" $color="#135846">View Notes</Button>
+                        </Tippy>
+                    </StyledComponents.TD>
                     <StyledComponents.TD>{(booking.room as Room).room_type as enumRoomType}</StyledComponents.TD>
                     <td>
                         <Button $background={status.background} $color={status.color}>{booking.status}</Button>
-                        <StyledComponents.CrossCircled onClick={(event) => {handleDeleteBooking(event, booking._id, booking.room._id)}}/>
+                        <StyledComponents.CrossCircled onClick={(event) => { handleDeleteBooking(event, booking._id, booking.room._id) }} />
                     </td>
                 </StyledComponents.TR>;
             }));
@@ -122,7 +158,7 @@ function Bookings(){
         setIsOut(false);
         setIsProgres(false);
         const innerHTML = event.target as HTMLElement;
-        switch(innerHTML.innerHTML){
+        switch (innerHTML.innerHTML) {
             case "All Bookings":
                 dispatch(filterBookings("All Bookings"));
                 setIsAll(true);
@@ -143,7 +179,7 @@ function Bookings(){
     }
 
     return bookings.loading ?
-        <Loading/> :
+        <Loading /> :
         <PageWrapper>
             <TableActionsWrapper>
                 <Filters>
@@ -155,10 +191,10 @@ function Bookings(){
                 <NavLink to="/bookings/new">
                     <Button $background="#135846" $color="white">+ New Booking</Button>
                 </NavLink>
-            </TableActionsWrapper>  
+            </TableActionsWrapper>
             <Table headers={bookings.tableHeaders as BookingTableHeaders[]} action={sortBookings}>{bookingsOrdered as React.JSX.Element[]}</Table>
         </PageWrapper>
-    ;
+        ;
 }
 
 export default Bookings;
