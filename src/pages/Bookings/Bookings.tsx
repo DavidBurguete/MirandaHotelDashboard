@@ -119,8 +119,7 @@ function Bookings() {
                         }
                         break;
                 }
-                // onClick={() => navigateToBookingCard(booking._id as string)}
-                return <StyledComponents.TR key={booking._id as string}>
+                return <StyledComponents.TR key={booking._id as string} onClick={() => navigateToBookingCard(booking._id as string)}>
                     <StyledComponents.TDMoreContent>
                         <p>{booking.client_name as string}</p>
                         <StyledComponents.ID>ID #{booking._id as string}</StyledComponents.ID>
